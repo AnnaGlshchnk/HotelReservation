@@ -20,7 +20,7 @@ import java.util.List;
 @Configuration
 @EnableWebMvc
 @PropertySource("classpath:sql.properties")
-@ComponentScan(basePackages = {})
+@ComponentScan(basePackages = "com.anna")
 @EnableTransactionManagement
 @EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter {
@@ -29,9 +29,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/hotel");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db?useSSL=false");
         dataSource.setUsername("root");
-        dataSource.setPassword("null");
+        dataSource.setPassword("root");
         return dataSource;
     }
 
