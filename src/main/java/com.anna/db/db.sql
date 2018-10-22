@@ -22,9 +22,8 @@ CREATE TABLE reservation(
   start_reserv    DATE           NOT NULL,
   end_reserv      DATE           NOT NULL,
   room_id         INT            NOT NULL,
-  guest_id        INT            NOT NULL
   PRIMARY KEY (reserv_id),
-  FOREIGN KEY (guest_id) REFERENCES guests(guest_id)  ON DELETE CASCADE,
+  FOREIGN KEY (guest_id) REFERENCES guests(guest_id)  ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS guests;
@@ -32,6 +31,8 @@ CREATE TABLE guests (
   guest_id       INT            NOT NULL AUTO_INCREMENT,
   first_name     VARCHAR(255)   NOT NULL,
   surname        VARCHAR(255)   NOT NULL,
-  PRIMARY KEY (guest_id);
+  reserv_id       INT            NOT NULL,
+  PRIMARY KEY (guest_id),
+  FOREIGN KEY (reserv_id) REFERENCES reservation(reserv_id)  ON DELETE CASCADE);
 
 
