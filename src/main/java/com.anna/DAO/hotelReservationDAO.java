@@ -8,50 +8,30 @@ import java.util.List;
 
 public interface hotelReservationDAO {
 
-        List<Hotel> getCompanies(String hotelName) throws DataAccessException;
+    List<Hotel> getHotel();
 
-        Hotel getHotelById(Integer hotelId) throws DataAccessException;
+    Hotel getHotelById(Integer hotelId);
+    Hotel getHotelByName(String name);
 
-        Hotel getHotelByName(String hotelName) throws DataAccessException;
+    List<Room> getRoom();
 
-        Integer addHotel(Hotel hotel) throws DataAccessException;
+    Room getRoomById(Integer roomId);
+    Room getRooomByName(Integer price);
 
-        Integer updateHotel(Hotel hotel) throws DataAccessException;
+    List<Guest> getGuest();
 
-        Integer deleteHotel(Integer hotelId) throws DataAccessException;
+    Guest getGuestById(Integer guestId);
+    Guest getGuestByName(String fName, String sName);
+    Integer addGuest(Guest guest);
+    Integer updateGuest(Guest guest);
+    Integer deleteGuest(Integer guestId);
 
+    List<Reservation> getReserv();
 
-        List<Room> getPhones(Integer price) throws DataAccessException;
-
-        Room getRoomById(Integer roomId) throws DataAccessException;
-
-        Integer addRoom(Room room) throws DataAccessException;
-
-        Integer updateRoom(Room room) throws DataAccessException;
-
-        Integer deleteRoom(Integer roomId) throws DataAccessException;
-
-
-        List<Reservation> getReserv(Date startRes, Date endRes) throws DataAccessException;
-
-        Reservation getReservById(Integer reservId) throws DataAccessException;
-
-        Integer addReserv(Reservation reserv) throws DataAccessException;
-
-        Integer updateReserv(Reservation reserv) throws DataAccessException;
-
-        Integer deleteReserv(Integer reservId) throws DataAccessException;
+    Reservation getReservById(Integer reservId);
+    Integer addReserv(Reservation reserv);
+    Integer updateReserv(Reservation reserv);
+    Integer deleteReserv(Integer reservId);
 
 
-        List<Guest> getGuest(String fName, String sName) throws DataAccessException;
-
-        Guest getGuestById(Integer guestId) throws DataAccessException;
-
-        Integer addGuest(Guest guest) throws DataAccessException;
-
-        Integer updateGuest(Guest guest) throws DataAccessException;
-
-        Integer deleteGuest(Integer guestId) throws DataAccessException;
-
-    }
 }
