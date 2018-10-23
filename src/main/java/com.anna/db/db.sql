@@ -4,11 +4,11 @@ CREATE TABLE hotel(
   hotel               VARCHAR(255)     NOT NULL UNIQUE,
   room_id             INT              NOT NULL,
   PRIMARY KEY (hotel_id),
-  FOREIGN KEY (room_id) REFERENCES rooms(room_id)  ON DELETE CASCADE
+  FOREIGN KEY (room_id) REFERENCES room(room_id)  ON DELETE CASCADE
 );
 
-DROP TABLE IF EXISTS rooms;
-CREATE TABLE rooms(
+DROP TABLE IF EXISTS room;
+CREATE TABLE room(
   room_id      INT              NOT NULL AUTO_INCREMENT,
   price        INT              NOT NULL,
   hotel_id     INT              NOT NULL,
@@ -19,11 +19,11 @@ CREATE TABLE rooms(
 DROP TABLE IF EXISTS reservation;
 CREATE TABLE reservation(
   reserv_id       INT            NOT NULL AUTO_INCREMENT,
-  start_reserv    DATE           NOT NULL,
-  end_reserv      DATE           NOT NULL,
+  start_reserv    VARCHAR (15)          NOT NULL,
+  end_reserv      VARCHAR (15)          NOT NULL,
   room_id         INT            NOT NULL,
-  PRIMARY KEY (reserv_id),
-  FOREIGN KEY (guest_id) REFERENCES guests(guest_id)  ON DELETE CASCADE
+  guest_id       INT            NOT NULL,
+  PRIMARY KEY (reserv_id)
 );
 
 DROP TABLE IF EXISTS guests;

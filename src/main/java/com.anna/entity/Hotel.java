@@ -3,6 +3,7 @@ package com.anna.entity;
 public class Hotel {
         private Integer  hotelId;
         private String name;
+        private  Integer roomId;
 
         public Hotel() {
 
@@ -16,11 +17,11 @@ public class Hotel {
             this.hotelId = hotelId;
         }
 
-        public int getId() {
+        public int getHotelId() {
             return hotelId;
         }
 
-        public void setId(Integer hotelId) {
+        public void setHotelId(Integer hotelId) {
             this.hotelId = hotelId;
         }
 
@@ -31,6 +32,15 @@ public class Hotel {
         public String getName() {
             return name;
         }
+
+        public int getRoomId() {
+        return roomId;
+    }
+
+        public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
 
 }
 

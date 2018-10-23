@@ -4,6 +4,8 @@ public class Room {
 
     private Integer  roomId;
     private Integer price;
+    private Integer  hotelId;
+    private Integer  reservId;
 
     public Room() {
 
@@ -17,11 +19,11 @@ public class Room {
         this.roomId = roomId;
     }
 
-    public int getId() {
+    public int getRoomId() {
         return roomId;
     }
 
-    public void setId(Integer roomId) {
+    public void setRoomId(Integer roomId) {
         this.roomId = roomId;
     }
 
@@ -31,6 +33,22 @@ public class Room {
 
     public Integer getPrice() {
         return price;
+    }
+
+    public int getReservId() {
+        return reservId;
+    }
+
+    public void setReservId(Integer reservId) {
+        this.reservId = reservId;
+    }
+
+    public int getHotelId() {
+        return hotelId;
+    }
+
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
     }
 
 }
