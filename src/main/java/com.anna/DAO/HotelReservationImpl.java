@@ -1,11 +1,55 @@
 package com.anna.DAO;
 
 import com.anna.entity.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 
+import javax.sql.DataSource;
 import java.util.List;
 
 public class HotelReservationImpl implements hotelReservationDAO {
+
+    @Value("${hotelReservationDAOSql.getGuest}")
+    private String getGuestSql;
+    @Value("${hotelReservationDAOSql.getGuestById}")
+    private String getGuestByIdSql;
+    @Value("${hotelReservationDAOSql.getGuestByName}")
+    private String getGuestByNameSql;
+    @Value("${hotelReservationDAOSql.addGuest}")
+    private String addGuestSql;
+    @Value("${hotelReservationDAOSql.updateGuest}")
+    private String updateGuestSql;
+    @Value("${hotelReservationDAOSql.deleteGuest}")
+    private String deleteGuestSql;
+    @Value("${hotelReservationDAOSql.getReserv}")
+    private String getReservSql;
+    @Value("${hotelReservationDAOSql.getReservById")
+    private String getReservByIdSql;
+    @Value("${hotelReservationDAOSql.addReserv}")
+    private String addReservSql;
+    @Value("${hotelReservationDAOSql.updateReserv }")
+    private String updateReservSql;
+    @Value("${hotelReservationDAOSql.deleteReserv}")
+    private String deleteReservSQql;
+    @Value("${hotelReservationDAOSql.getHotel}")
+    private String getHotelSql;
+    @Value("${hotelReservationDAOSql.getHotelById")
+    private String getHotelByIdSql;
+    @Value("${hotelReservationDAOSql.getHotelByName}")
+    private String getHotelByNameSql;
+    @Value("${hotelReservationDAOSql.getRoom}")
+    private String getRoomSql;
+    @Value("${hotelReservationDAOSql.getRoomByPrice}")
+    private  String getRoomByPriceSql;
+
+    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
+
+    @Autowired
+    public HotelReservationImpl(DataSource dataSource) {
+        namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
+    }
 
 
     @Override
