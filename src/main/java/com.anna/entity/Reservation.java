@@ -5,7 +5,8 @@ public class Reservation {
     private Integer  reservId;
     private String  startReserv;
     private String   endReserv;
-    private Integer  roomId;
+    private Room room;
+    private  Guest guest;
 
     public Reservation() {
 
@@ -25,7 +26,7 @@ public class Reservation {
         return reservId;
     }
 
-    public void setreservId(Integer reservId) {
+    public void setReservId(Integer reservId) {
         this.reservId = reservId;
     }
 
@@ -45,11 +46,19 @@ public class Reservation {
         return endReserv;
     }
 
-    public int getRoomId() {
-        return roomId;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Guest getGuest() {
+        return guest;
+    }
+
+    public void setGuest(Guest guest) {
+        this.guest = guest;
     }
 }

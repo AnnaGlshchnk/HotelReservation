@@ -5,7 +5,7 @@ public class Guest {
     private Integer guestId;
     private String fName;
     private  String sName;
-    private Integer reservId;
+    private Reservation reservation;
 
     public Guest() {
 
@@ -45,11 +45,11 @@ public class Guest {
         return sName;
     }
 
-    public int getReservId() {
-        return reservId;
+    public Reservation getReserv() {
+        return reservation;
     }
 
-    public void setReservId(Integer reservId) {
-        this.reservId = reservId;
+    public void setReserv(Reservation reservation) {
+        this.reservation = reservation;
     }
 }

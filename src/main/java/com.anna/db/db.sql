@@ -26,8 +26,8 @@ CREATE TABLE reservation(
   PRIMARY KEY (reserv_id)
 );
 
-DROP TABLE IF EXISTS guests;
-CREATE TABLE guests (
+DROP TABLE IF EXISTS guest;
+CREATE TABLE guest (
   guest_id       INT            NOT NULL AUTO_INCREMENT,
   first_name     VARCHAR(255)   NOT NULL,
   surname        VARCHAR(255)   NOT NULL,

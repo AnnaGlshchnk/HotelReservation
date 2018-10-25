@@ -4,8 +4,8 @@ public class Room {
 
     private Integer  roomId;
     private Integer price;
-    private Integer  hotelId;
-    private Integer  reservId;
+    private Hotel hotel;
+    private Reservation reservation;
 
     public Room() {
 
@@ -35,20 +35,18 @@ public class Room {
         return price;
     }
 
-    public int getReservId() {
-        return reservId;
+    public Reservation getReserv() { return reservation; }
+
+    public void setReserv(Reservation reservation) {
+        this.reservation = reservation;
     }
 
-    public void setReservId(Integer reservId) {
-        this.reservId = reservId;
+    public Hotel getHotel() {
+        return hotel;
     }
 
-    public int getHotelId() {
-        return hotelId;
-    }
-
-    public void setHotelId(Integer hotelId) {
-        this.hotelId = hotelId;
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 
 }

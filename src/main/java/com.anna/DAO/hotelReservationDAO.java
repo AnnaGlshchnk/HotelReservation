@@ -14,8 +14,7 @@ public interface hotelReservationDAO {
 
     List<Room> getRoom();
 
-    Room getRoomById(Integer roomId);
-    Room getRooomByName(Integer price);
+    Room getRoomByPrice(Integer price);
 
     List<Guest> getGuest();
 
@@ -28,8 +27,8 @@ public interface hotelReservationDAO {
     List<Reservation> getReserv();
 
     Reservation getReservById(Integer reservId);
-    Integer addReserv(Reservation reserv);
-    Integer updateReserv(Reservation reserv);
+    Integer addReserv(Reservation reservation);
+    Integer updateReserv(Reservation reservation);
     Integer deleteReserv(Integer reservId);
 
 
