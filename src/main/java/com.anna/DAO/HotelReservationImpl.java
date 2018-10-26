@@ -3,13 +3,28 @@ package com.anna.DAO;
 import com.anna.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 
 import javax.sql.DataSource;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotelReservationImpl implements hotelReservationDAO {
+
+    private static final String HOTEL_ID = "hotelId";
+    private static final String GUEST_ID = "guestId";
+    private static final String FIRST_NAME = "firstName";
+    private static final String SURNAME = "surname";
+    private static final String RESERV_ID = "reservId";
+    private static final String START_RESERV = "startReserv";
+    private static final String END_RESERV = "endReserv";
 
     @Value("${hotelReservationDAOSql.getGuest}")
     private String getGuestSql;
@@ -58,9 +73,7 @@ public class HotelReservationImpl implements hotelReservationDAO {
     }
 
     @Override
-    public Hotel getHotelById(Integer hotelId) {
-        return null;
-    }
+    public Hotel getHotelById(Integer hotelId) { return null;}
 
     @Override
     public Hotel getHotelByName(String name) {
@@ -94,41 +107,89 @@ public class HotelReservationImpl implements hotelReservationDAO {
 
     @Override
     public Integer addGuest(Guest guest) {
-        return null;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(FIRST_NAME, guest.getFName());
+        parameterSource.addValue(SURNAME, guest.getSName());
+        namedParameterJdbcTemplate.update(addGuestSql, parameterSource, keyHolder);
+        return keyHolder.getKey().intValue();
     }
 
     @Override
     public Integer updateGuest(Guest guest) {
-        return null;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(GUEST_ID, guest.getGuestId());
+        parameterSource.addValue(FIRST_NAME, guest.getFName());
+        parameterSource.addValue(SURNAME, guest.getSName());
+        return namedParameterJdbcTemplate.update(updateGuestSql, parameterSource);
     }
 
     @Override
     public Integer deleteGuest(Integer guestId) {
-        return null;
+
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource(GUEST_ID, guestId);
+        return namedParameterJdbcTemplate.update(deleteGuestSql, parameterSource);
+
     }
 
     @Override
     public List<Reservation> getReserv() {
-        return null;
+        return namedParameterJdbcTemplate.query(getReservSql, new ReservationRoomRowMapper());
     }
 
     @Override
     public Reservation getReservById(Integer reservId) {
-        return null;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(RESERV_ID, reservId);
+        return  namedParameterJdbcTemplate.queryForObject(getReservByIdSql, parameterSource, new ReservationRowMapper());
     }
 
     @Override
     public Integer addReserv(Reservation reservation) {
-        return null;
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(START_RESERV, reservation.getStartReserv());
+        parameterSource.addValue(END_RESERV, reservation.getEndReserv());
+        namedParameterJdbcTemplate.update(addReservSql, parameterSource, keyHolder);
+        return keyHolder.getKey().intValue();
     }
 
     @Override
     public Integer updateReserv(Reservation reservation) {
-        return null;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(RESERV_ID, reservation.getReservId());
+        parameterSource.addValue(START_RESERV, reservation.getStartReserv());
+        parameterSource.addValue(END_RESERV, reservation.getEndReserv());
+        return namedParameterJdbcTemplate.update(updateReservSql, parameterSource);
     }
 
     @Override
     public Integer deleteReserv(Integer reservId) {
-        return null;
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(RESERV_ID, reservId);
+        return namedParameterJdbcTemplate.update(deleteReservSQql, parameterSource);
     }
+
+    private class ReservationRowMapper implements RowMapper<Reservation> {
+
+        public Reservation mapRow(ResultSet resultSet, int i) throws SQLException {
+
+            Reservation reservation = new Reservation(resultSet.getInt("reserv_id"),
+                    resultSet.getString("start_reserv"), resultSet.getString("end_reserv"));
+            return reservation;
+        }
+    }
+
+    private  class ReservationRoomRowMapper implements  RowMapper<Reservation>{
+
+        public Reservation mapRow(ResultSet resultSet, int i) throws SQLException{
+            Reservation reservation = new Reservation(resultSet.getInt("reserv_id"),
+                    resultSet.getString("start_reserv"), resultSet.getString("end_reserv"));
+                    Room room = new Room(resultSet.getInt("room_Id"), resultSet.getInt("price"));
+                    return  reservation, room;
+        }
+
+    }
+
 }

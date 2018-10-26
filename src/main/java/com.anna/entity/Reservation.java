@@ -1,5 +1,8 @@
 package com.anna.entity;
 
+import java.awt.*;
+
+
 public class Reservation {
 
     private Integer  reservId;
@@ -7,6 +10,7 @@ public class Reservation {
     private String   endReserv;
     private Room room;
     private  Guest guest;
+    //private List<Room> room;
 
     public Reservation() {
 
@@ -21,6 +25,7 @@ public class Reservation {
         this.startReserv = startReserv;
         this.endReserv = endReserv;
     }
+
 
     public int getReservId() {
         return reservId;
