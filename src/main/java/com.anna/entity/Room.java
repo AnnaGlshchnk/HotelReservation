@@ -2,7 +2,7 @@ package com.anna.entity;
 
 public class Room {
 
-    private Integer  roomId;
+    private Integer roomId;
     private Integer price;
     private Hotel hotel;
     private Reservation reservation;
@@ -14,6 +14,7 @@ public class Room {
     public Room(Integer price) {
         this.price = price;
     }
+
     public Room(Integer roomId, Integer price) {
         this.price = price;
         this.roomId = roomId;
@@ -35,7 +36,9 @@ public class Room {
         return price;
     }
 
-    public Reservation getReserv() { return reservation; }
+    public Reservation getReserv() {
+        return reservation;
+    }
 
     public void setReserv(Reservation reservation) {
         this.reservation = reservation;

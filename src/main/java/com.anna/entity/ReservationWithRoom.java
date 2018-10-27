@@ -1,32 +1,20 @@
 package com.anna.entity;
 
-import java.awt.*;
-
-
-public class Reservation {
+public class ReservationWithRoom {
 
     private Integer reservId;
     private String startReserv;
     private String endReserv;
-    private Room room;
-    private Guest guest;
-    //private List<Room> room;
+    private Integer roomId;
+    private Integer price;
 
-    public Reservation() {
-
-    }
-
-    public Reservation(String startReserv, String endReserv) {
-        this.startReserv = startReserv;
-        this.endReserv = endReserv;
-    }
-
-    public Reservation(Integer reservId, String startReserv, String endReserv) {
+    public ReservationWithRoom(Integer reservId, String startReserv, String endReserv, Integer roomId, Integer price) {
         this.reservId = reservId;
         this.startReserv = startReserv;
         this.endReserv = endReserv;
+        this.price = price;
+        this.roomId = roomId;
     }
-
 
     public int getReservId() {
         return reservId;
@@ -52,19 +40,19 @@ public class Reservation {
         return endReserv;
     }
 
-    public Room getRoom() {
-        return room;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 
-    public Guest getGuest() {
-        return guest;
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public Integer getPrice() {
+        return price;
     }
 }

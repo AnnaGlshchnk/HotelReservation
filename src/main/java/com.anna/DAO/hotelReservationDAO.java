@@ -7,12 +7,11 @@ import java.util.List;
 
 public interface hotelReservationDAO {
 
-    List<Hotel> getHotel();
+    List<HotelWithRoom> getHotel();
 
-    Hotel getHotelById(Integer hotelId);
     Hotel getHotelByName(String name);
 
-    List<Room> getRoom();
+    List<RoomWithReservation> getRoom();
 
     Room getRoomByPrice(Integer price);
 
@@ -24,7 +23,7 @@ public interface hotelReservationDAO {
     Integer updateGuest(Guest guest);
     Integer deleteGuest(Integer guestId);
 
-    List<Reservation> getReserv();
+    List<ReservationWithRoom> getReserv();
 
     Reservation getReservById(Integer reservId);
     Integer addReserv(Reservation reservation);

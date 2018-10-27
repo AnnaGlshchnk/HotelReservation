@@ -16,13 +16,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import javax.sql.DataSource;
 import java.util.List;
 
-
 @Configuration
 @EnableWebMvc
 @PropertySource("classpath:sql.properties")
 @ComponentScan(basePackages = "com.anna")
 @EnableTransactionManagement
-@EnableAspectJAutoProxy
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

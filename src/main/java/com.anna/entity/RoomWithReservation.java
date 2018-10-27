@@ -1,32 +1,20 @@
 package com.anna.entity;
 
-import java.awt.*;
+import org.springframework.jdbc.core.RowCallbackHandler;
 
+public class RoomWithReservation {
 
-public class Reservation {
-
+    private Integer roomId;
     private Integer reservId;
     private String startReserv;
     private String endReserv;
-    private Room room;
-    private Guest guest;
-    //private List<Room> room;
 
-    public Reservation() {
-
-    }
-
-    public Reservation(String startReserv, String endReserv) {
-        this.startReserv = startReserv;
-        this.endReserv = endReserv;
-    }
-
-    public Reservation(Integer reservId, String startReserv, String endReserv) {
+    public RoomWithReservation(Integer roomId, Integer reservId, String startReserv, String endReserv) {
         this.reservId = reservId;
         this.startReserv = startReserv;
         this.endReserv = endReserv;
+        this.roomId = roomId;
     }
-
 
     public int getReservId() {
         return reservId;
@@ -52,19 +40,11 @@ public class Reservation {
         return endReserv;
     }
 
-    public Room getRoom() {
-        return room;
+    public int getRoomId() {
+        return roomId;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
     }
 }

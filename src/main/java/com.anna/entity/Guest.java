@@ -4,7 +4,7 @@ public class Guest {
 
     private Integer guestId;
     private String fName;
-    private  String sName;
+    private String sName;
     private Reservation reservation;
 
     public Guest() {
@@ -15,6 +15,7 @@ public class Guest {
         this.fName = fName;
         this.sName = sName;
     }
+
     public Guest(Integer guestId, String fName, String sName) {
         this.guestId = guestId;
         this.fName = fName;

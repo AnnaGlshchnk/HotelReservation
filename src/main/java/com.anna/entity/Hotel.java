@@ -1,43 +1,44 @@
 package com.anna.entity;
 
 public class Hotel {
-        private Integer  hotelId;
-        private String name;
-        private  Room room;
+    private Integer hotelId;
+    private String name;
+    private Room room;
 
-        public Hotel() {
+    public Hotel() {
 
-        }
+    }
 
-        public Hotel(String name) {
-            this.name = name;
-        }
-        public Hotel(Integer hotelId, String name) {
-            this.name = name;
-            this.hotelId = hotelId;
-        }
+    public Hotel(String name) {
+        this.name = name;
+    }
 
-        public int getHotelId() {
-            return hotelId;
-        }
+    public Hotel(Integer hotelId, String name) {
+        this.name = name;
+        this.hotelId = hotelId;
+    }
 
-        public void setHotelId(Integer hotelId) {
-            this.hotelId = hotelId;
-        }
+    public int getHotelId() {
+        return hotelId;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public Room getRoom() {
+    public String getName() {
+        return name;
+    }
+
+    public Room getRoom() {
         return room;
     }
 
-        public void setRoom(Room room) {
+    public void setRoom(Room room) {
         this.room = room;
     }
 
