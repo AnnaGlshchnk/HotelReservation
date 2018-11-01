@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Hello</h1>
+<h1>Hotel Reservation</h1>
+<a href="/hotels">Hotels</a>
 </body>
 </html>

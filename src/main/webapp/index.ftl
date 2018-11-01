@@ -5,6 +5,8 @@
     <title>Title</title>
 </head>
 <body>
-<h1> hello</h1>
+<h1>Hello</h1>
+<br>
+<a href="/hello">Hello</a>
 </body>
 </html>
