@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -29,5 +30,11 @@ public class HotelReservationController {
     public  String getAllHotel(Model model){
         model.addAttribute("hotels", hotelReservationService.showHotel());
         return "hotelsList";
+    }
+
+    @GetMapping("/hotel/{hotelId}")
+    public  String getHotelByID(@PathVariable("hotelId") int hotelId, Model model){
+        model.addAttribute("hotel", hotelReservationService.getHotelByID(hotelId));
+        return "showHotel";
     }
 }

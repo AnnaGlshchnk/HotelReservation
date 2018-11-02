@@ -8,15 +8,15 @@
 <h1>Hotels List</h1<>
 <table>
     <tr>
-        <th>ID</th>
+        <th>Id</th>
         <th>Hotel</th>
-        <th>RoomID</th>
+        <th>RoomId</th>
     </tr>
 <#list hotels as hotel>
 <tr>
-    <td>${hotel.hotel_id}</td>
+    <td><a href="/hotel/${hotel.hotelId}">${hotel.hotelId}</a></td>
     <td>${hotel.hotel}</td>
-    <td>${hotel.room_id}</td>
+    <td>${hotel.roomId}</td>
 </tr>
 </#list>
 </table>

@@ -14,19 +14,19 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @ComponentScan(basePackages = "com.anna.controller")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
-@Bean
-    public ViewResolver getViewResorver(){
-    FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver();
-    freeMarkerViewResolver.setOrder(1);
-    freeMarkerViewResolver.setSuffix(".ftl");
-    freeMarkerViewResolver.setPrefix("");
-    return freeMarkerViewResolver;
+    @Bean
+    public ViewResolver getViewResolver() {
+        FreeMarkerViewResolver freeMarkerViewResolver = new FreeMarkerViewResolver();
+        freeMarkerViewResolver.setOrder(1);
+        freeMarkerViewResolver.setSuffix(".ftl");
+        freeMarkerViewResolver.setPrefix("");
+        return freeMarkerViewResolver;
     }
 
     @Bean
-    public FreeMarkerConfigurer getFreeMarkerConfigurer(){
+    public FreeMarkerConfigurer getFreeMarkerConfigurer() {
         FreeMarkerConfigurer freeMarkerConfigurer = new FreeMarkerConfigurer();
-        freeMarkerConfigurer.setTemplateLoaderPaths("/", "/WEB-INF/views");
+        freeMarkerConfigurer.setTemplateLoaderPaths("/", "/WEB-INF/views/");
         return freeMarkerConfigurer;
     }
 }

@@ -24,4 +24,24 @@ public class HotelReservationImpl implements HotelReservationDao{
         String sql = "select * from hotel";
         return jdbcTemplate.query(sql, new HotelMapper());
     }
+
+    public void save(Hotel hotel) {
+        String sql = "insert into hotel (hotel, room_id) values (?,?)";
+        jdbcTemplate.update(sql, hotel.getHotel(), hotel.getRoomId());
+    }
+
+    public Hotel getHotelByID(int hotelId) {
+        String sql = "SELECT * FROM hotel WHERE hotel_id=?";
+        return jdbcTemplate.queryForObject(sql, new HotelMapper(), hotelId);
+    }
+
+    public void update(Hotel hotel) {
+        String sql = "update hotel set hotel=?, room_id=? where hotel_id=?";
+        jdbcTemplate.update(sql, hotel.getHotelId(), hotel.getHotel(), hotel.getRoomId());
+    }
+
+    public void delete(int hotelId) {
+        String sql="delete from hotel where hotel_id=?";
+        jdbcTemplate.update(sql, hotelId);
+    }
 }

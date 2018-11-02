@@ -18,10 +18,8 @@ import javax.sql.DataSource;
 public class SpringConfig {
 
     @Bean
-    public JdbcTemplate getJdbcTemplate(){
-        JdbcTemplate jdbcTemplate = new JdbcTemplate(getDataSource());
-        return jdbcTemplate;
-
+    public JdbcTemplate getJdbcTemplate() {
+        return new JdbcTemplate(getDataSource());
     }
 
     @Bean
@@ -34,13 +32,5 @@ public class SpringConfig {
         return dataSource;
     }
 
-    @Bean
-    public HotelReservationDao getHotelReservation(){
-        return new HotelReservationImpl(getJdbcTemplate());
-    }
 
-    @Bean
-    public HotelReservationService getHotelReservationService(){
-        return new HotelReservationServiceImpl();
-    }
 }

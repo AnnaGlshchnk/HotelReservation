@@ -8,4 +8,11 @@ public interface HotelReservationDao {
 
 
     List<Hotel> showHotel();
+
+    void save(Hotel hotel);
+    Hotel getHotelByID(int hotelId);
+
+    void update(Hotel hotel);
+
+    void delete(int hotelId);
 }
