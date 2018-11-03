@@ -1,9 +1,9 @@
 package com.anna.dao;
 
-import com.anna.entity.Hotel;
-import com.anna.mapper.HotelMapper;
+
+import com.anna.entity.*;
+import com.anna.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +23,11 @@ public class HotelReservationImpl implements HotelReservationDao{
     public List<Hotel> showHotel() {
         String sql = "select * from hotel";
         return jdbcTemplate.query(sql, new HotelMapper());
+    }
+
+    public List<Room> showRoom() {
+        String sql = "select * from room";
+        return jdbcTemplate.query(sql, new RoomMapper());
     }
 
     public void save(Hotel hotel) {

@@ -2,6 +2,7 @@ package com.anna.service;
 
 import com.anna.dao.HotelReservationDao;
 import com.anna.entity.Hotel;
+import com.anna.entity.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,10 @@ public class HotelReservationServiceImpl implements HotelReservationService {
 
     public List<Hotel> showHotel() {
         return hotelReservationDao.showHotel();
+    }
+
+    public List<Room> showRoom() {
+        return hotelReservationDao.showRoom();
     }
 
     public void save(Hotel hotel) {
