@@ -2,28 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Room</title>
 </head>
 <body>
 <table>
     <tr>
-        <td>RoomId</td>
-        <td>${room.roomId}</td>
+        <th>Id</th>
+        <th>Price</th>
+        <th>HotelId</th>
+        <th>reservId</th>
     </tr>
-    <tr>
-        <td>Price</td>
-        <td>${room.price}</td>
-    </tr>
-    <tr>
-        <td>HotelId</td>
-        <td>${room.hotelId}</td>
-    </tr>
-    <tr>
-        <td>ReservId</td>
-        <td>${room.reservId}</td>
-    </tr>
+<#list room as room>
+<tr>
+    <td>#{room.roomId}</td>
+    <td>${room.price}</td>
+    <td>${room.hotelId}</td>
+    <td>${room.reservId}</td>
+</tr>
+</#list>
 </table>
-
 <br>
 <a href="/hotels">Back</a>
 </body>

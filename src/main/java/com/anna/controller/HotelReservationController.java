@@ -34,7 +34,7 @@ public class HotelReservationController {
 
     @GetMapping("/hotel/{hotelId}")
     public  String getAllRoom(@PathVariable("hotelId") int hotelId, Model model){
-        model.addAttribute("hotel", hotelReservationService.showRoom());
+        model.addAttribute("room", hotelReservationService.showRoom());
         return "showRoom";
     }
 
