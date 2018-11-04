@@ -26,7 +26,7 @@ public class HotelReservationImpl implements HotelReservationDao{
     }
 
     public List<Room> showRoom() {
-        String sql = "select * from room where room.hotel_id=hotel.hotel_id";
+        String sql = "";
         return jdbcTemplate.query(sql, new RoomMapper());
     }
 
