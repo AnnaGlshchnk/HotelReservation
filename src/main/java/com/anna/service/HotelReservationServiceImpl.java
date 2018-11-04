@@ -19,23 +19,11 @@ public class HotelReservationServiceImpl implements HotelReservationService {
         return hotelReservationDao.showHotel();
     }
 
-    public List<Room> showRoom() {
-        return hotelReservationDao.showRoom();
-    }
+    public List<Room> showRoom(int hotelId) { return hotelReservationDao.showRoom(hotelId); }
 
-    public void save(Hotel hotel) {
-        hotelReservationDao.save(hotel);
-    }
-
-    public Hotel getHotelByID(int hotelId) {
+    public Room getHotelByID(int hotelId) {
         return hotelReservationDao.getHotelByID(hotelId);
     }
 
-    public void update(Hotel hotel) {
-        hotelReservationDao.update(hotel);
-    }
 
-    public void delete(int hotelId) {
-        hotelReservationDao.delete(hotelId);
-    }
 }

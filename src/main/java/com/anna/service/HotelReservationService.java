@@ -9,12 +9,9 @@ public interface HotelReservationService {
 
     List<Hotel> showHotel();
 
-    List<Room> showRoom();
+    List<Room> showRoom(int hotelId);
 
-    void save(Hotel hotel);
-    Hotel getHotelByID(int hotelId);
 
-    void update(Hotel hotel);
+    Room getHotelByID(int hotelId);
 
-    void delete(int hotelId);
 }

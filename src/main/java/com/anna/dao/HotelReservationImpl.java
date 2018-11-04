@@ -25,28 +25,16 @@ public class HotelReservationImpl implements HotelReservationDao{
         return jdbcTemplate.query(sql, new HotelMapper());
     }
 
-    public List<Room> showRoom() {
-        String sql = "";
-        return jdbcTemplate.query(sql, new RoomMapper());
+    public List<Room> showRoom(int hotelId){
+        String sql = "select room.room_id,room.price,room.hotel_id,room.reserv_id,hotel.hotel_id from room right join hotel on room.hotel_id=hotel.hotel_id where room.hotel_id=?";
+        return jdbcTemplate.query(sql, new RoomMapper(), hotelId);
     }
 
-    public void save(Hotel hotel) {
-        String sql = "insert into hotel (hotel, room_id) values (?,?)";
-        jdbcTemplate.update(sql, hotel.getHotel(), hotel.getRoomId());
+
+    public Room getHotelByID(int hotelId) {
+        String sql ="select * from room where hotel_id=1";
+        return (Room) jdbcTemplate.query(sql, new RoomMapper(), hotelId);
     }
 
-    public Hotel getHotelByID(int hotelId) {
-        String sql = "SELECT * FROM hotel WHERE hotel_id=?";
-        return jdbcTemplate.queryForObject(sql, new HotelMapper(), hotelId);
-    }
 
-    public void update(Hotel hotel) {
-        String sql = "update hotel set hotel=?, room_id=? where hotel_id=?";
-        jdbcTemplate.update(sql, hotel.getHotelId(), hotel.getHotel(), hotel.getRoomId());
-    }
-
-    public void delete(int hotelId) {
-        String sql="delete from hotel where hotel_id=?";
-        jdbcTemplate.update(sql, hotelId);
-    }
 }

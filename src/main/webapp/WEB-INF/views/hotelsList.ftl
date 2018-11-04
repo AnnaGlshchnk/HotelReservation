@@ -10,13 +10,11 @@
     <tr>
         <th>Id</th>
         <th>Hotel</th>
-        <th>RoomId</th>
     </tr>
 <#list hotels as hotel>
 <tr>
     <td><a href="/hotel/${hotel.hotelId}">${hotel.hotelId}</a></td>
     <td>${hotel.hotel}</td>
-    <td>${hotel.roomId}</td>
 </tr>
 </#list>
 </table>

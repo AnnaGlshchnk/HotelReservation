@@ -7,13 +7,11 @@ CREATE TABLE guest (
   guest_id       INT            NOT NULL AUTO_INCREMENT,
   first_name     VARCHAR(255)   NOT NULL,
   surname        VARCHAR(255)   NOT NULL,
-  reserv_id       INT            NOT NULL,
   PRIMARY KEY (guest_id));
 
 CREATE TABLE hotel(
   hotel_id            INT              NOT NULL AUTO_INCREMENT,
   hotel               VARCHAR(255)     NOT NULL UNIQUE,
-  room_id             INT              NOT NULL,
   PRIMARY KEY (hotel_id));
 
 CREATE TABLE room(

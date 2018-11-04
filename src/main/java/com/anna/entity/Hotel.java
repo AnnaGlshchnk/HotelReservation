@@ -4,7 +4,6 @@ public class Hotel {
 
     private int hotelId;
     private String hotel;
-    private int roomId;
 
     public Hotel() {
     }
@@ -25,11 +24,5 @@ public class Hotel {
         this.hotelId = hotelId;
     }
 
-    public int getRoomId() {
-        return roomId;
-    }
 
-    public void setRoomId(int roomId) {
-        this.roomId = roomId;
-    }
 }

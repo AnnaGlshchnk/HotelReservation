@@ -13,7 +13,7 @@ public class HotelMapper implements RowMapper<Hotel> {
         Hotel hotel = new Hotel();
         hotel.setHotelId(resultSet.getInt("hotel_id"));
         hotel.setHotel(resultSet.getString("hotel"));
-        hotel.setRoomId(resultSet.getInt("room_id"));
+
         return hotel;
     }
 }
