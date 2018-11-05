@@ -16,11 +16,6 @@ public class HotelReservationController {
     @Autowired
     public HotelReservationService hotelReservationService;
 
-    /*@GetMapping("/")
-    public String index(){
-        return "index";
-    }
-*/
     @GetMapping("/")
     public  String hello(){
         return "hello";
@@ -38,5 +33,10 @@ public class HotelReservationController {
         return "showRoom";
     }
 
+    @GetMapping("/room/{roomId}")
+    public String getAllReservation(@PathVariable("roomId") int roomId, Model model){
+        model.addAttribute("reservation", hotelReservationService.showReservation(roomId));
+        return "showReservation";
+    }
 
 }

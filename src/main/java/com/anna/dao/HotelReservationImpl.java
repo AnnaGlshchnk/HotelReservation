@@ -30,10 +30,9 @@ public class HotelReservationImpl implements HotelReservationDao{
         return jdbcTemplate.query(sql, new RoomMapper(), hotelId);
     }
 
-
-    public Room getHotelByID(int hotelId) {
-        String sql ="select * from room where hotel_id=1";
-        return (Room) jdbcTemplate.query(sql, new RoomMapper(), hotelId);
+    public List<Reservation> showReservation(int roomId) {
+        String sql = "select * from reservation";
+        return jdbcTemplate.query(sql, new ReservMapper(), roomId);
     }
 
 

@@ -10,11 +10,11 @@
         <th>Id</th>
         <th>Price</th>
         <th>HotelId</th>
-        <th>reservId</th>
+        <th>ReservationId</th>
     </tr>
 <#list room as room>
 <tr>
-    <td>#{room.roomId}</td>
+    <td><a href="/room/${room.roomId}">${room.roomId}</a></td>
     <td>${room.price}</td>
     <td>${room.hotelId}</td>
     <td>${room.reservId}</td>

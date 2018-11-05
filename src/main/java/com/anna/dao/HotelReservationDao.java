@@ -1,7 +1,7 @@
 package com.anna.dao;
 
-import com.anna.entity.Hotel;
-import com.anna.entity.Room;
+import com.anna.entity.*;
+
 
 import java.util.List;
 
@@ -12,7 +12,6 @@ public interface HotelReservationDao {
 
     List<Room> showRoom(int hotelId);
 
-
-    Room getHotelByID(int hotelId);
+    List<Reservation> showReservation(int roomId);
 
 }
