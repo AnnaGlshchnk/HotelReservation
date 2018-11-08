@@ -12,6 +12,12 @@ public interface HotelReservationDao {
 
     List<Room> showRoom(int hotelId);
 
-    List<Reservation> showReservation(int roomId);
+    List<ReservationAndGuest> showReservationAndGuest(int roomId);
+
+    void addReservationAndGuest(ReservationAndGuest reservationAndGuest);
+
+    void updateReservationAndGuest(ReservationAndGuest reservationAndGuest);
+
+    void deleteReservationAndGuest(ReservationAndGuest reservationAndGuest);
 
 }

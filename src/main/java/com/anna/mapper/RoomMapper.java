@@ -14,7 +14,6 @@ public class RoomMapper implements RowMapper{
         room.setRoomId(resultSet.getInt("room_id"));
         room.setPrice(resultSet.getInt("price"));
         room.setHotelId(resultSet.getInt("hotel_id"));
-        room.setReservId(resultSet.getInt("reserv_id"));
         return room;
     }
 }

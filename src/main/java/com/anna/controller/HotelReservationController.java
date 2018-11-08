@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class HotelReservationController {
 
     @Autowired
-    public HotelReservationService hotelReservationService;
+    private HotelReservationService hotelReservationService;
 
     @GetMapping("/")
     public  String hello(){
@@ -35,8 +35,8 @@ public class HotelReservationController {
 
     @GetMapping("/room/{roomId}")
     public String getAllReservation(@PathVariable("roomId") int roomId, Model model){
-        model.addAttribute("reservation", hotelReservationService.showReservation(roomId));
-        return "showReservation";
+        model.addAttribute("reservationAndGuest", hotelReservationService.showReservationAndGuest(roomId));
+        return "showReservationAndGuest";
     }
 
 }

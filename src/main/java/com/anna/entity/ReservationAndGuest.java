@@ -1,14 +1,15 @@
 package com.anna.entity;
 
-public class Reservation {
+public class ReservationAndGuest {
 
     private int reservId;
     private String startReserv;
     private String endReserv;
     private int roomId;
-    private int guestId;
+    private String firstName;
+    private String surname;
 
-    public Reservation() {
+    public ReservationAndGuest() {
     }
 
     public int getReservId() {
@@ -43,11 +44,19 @@ public class Reservation {
         this.roomId = roomId;
     }
 
-    public int getGuestId() {
-        return guestId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setGuestId(int guestId) {
-        this.guestId = guestId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 }

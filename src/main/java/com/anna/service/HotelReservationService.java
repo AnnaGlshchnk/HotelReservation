@@ -1,7 +1,7 @@
 package com.anna.service;
 
 import com.anna.entity.Hotel;
-import com.anna.entity.Reservation;
+import com.anna.entity.ReservationAndGuest;
 import com.anna.entity.Room;
 
 import java.util.List;
@@ -12,6 +12,6 @@ public interface HotelReservationService {
 
     List<Room> showRoom(int hotelId);
 
-    List<Reservation> showReservation(int roomId);
+    List<ReservationAndGuest> showReservationAndGuest(int roomId);
 
 }

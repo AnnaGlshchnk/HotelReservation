@@ -34,12 +34,5 @@ public class Room {
         this.hotelId = hotelId;
     }
 
-    public int getReservId() {
-        return reservId;
-    }
-
-    public void setReservId(int reservId) {
-        this.reservId = reservId;
-    }
 }
 
