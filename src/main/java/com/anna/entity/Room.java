@@ -1,10 +1,12 @@
 package com.anna.entity;
 
+import java.util.List;
+
 public class Room {
     private int roomId;
     private int price;
     private int hotelId;
-    private  int reservId;
+    private List<Room> rooms;
 
     public Room() {
     }

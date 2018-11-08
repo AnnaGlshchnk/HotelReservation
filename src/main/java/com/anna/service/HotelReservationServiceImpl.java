@@ -2,8 +2,6 @@ package com.anna.service;
 
 import com.anna.dao.HotelReservationDao;
 import com.anna.entity.Hotel;
-import com.anna.entity.ReservationAndGuest;
-import com.anna.entity.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +12,13 @@ public class HotelReservationServiceImpl implements HotelReservationService {
 
 
     @Autowired
-    public HotelReservationDao hotelReservationDao;
+    private HotelReservationDao hotelReservationDao;
 
     public List<Hotel> showHotel() { return hotelReservationDao.showHotel(); }
 
-    public List<Room> showRoom(int hotelId) { return hotelReservationDao.showRoom(hotelId); }
+    public List showRoom(int hotelId) { return hotelReservationDao.showRoom(hotelId); }
 
-    public List<ReservationAndGuest> showReservationAndGuest(int roomId) { return hotelReservationDao.showReservationAndGuest(roomId); }
+    public List showReservation(int roomId) { return hotelReservationDao.showReservation(roomId); }
 
 
 }
