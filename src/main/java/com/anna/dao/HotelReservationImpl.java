@@ -31,19 +31,31 @@ public class HotelReservationImpl implements HotelReservationDao{
     }
 
     public List showReservation(int roomId) {
-        String sql = "select reservation.reserv_id, reservation.start_reserv, reservation.end_reserv, reservation.room_id, guest.first_name, guest.surname from reservation left join guest on reservation.guest_id=guest.guest_id where room_id=?";
+        String sql = "select reservation.reserv_id, reservation.start_reserv, reservation.end_reserv, reservation.room_id, guest.guest_id, guest.first_name, guest.surname from reservation left join guest on reservation.guest_id=guest.guest_id where room_id=?";
         return jdbcTemplate.query(sql, new ReservationMapper(), roomId);
     }
 
-    public void addReservation(Reservation reservation) {
+    public int addReservation(Reservation reservation) {
+
+        String sql = "insert into reservation (start_reserv, end_reserv, room_id, guest_id) values (?, ?, ?, ?)";
+        return jdbcTemplate.update(sql, reservation.getStartReserv(), reservation.getEndReserv(),
+                                        reservation.getRoomId(), reservation.getGuestId());
 
     }
 
     public void updateReservation(Reservation reservation) {
 
+        String sql = "update reservation set start_reserv=?, end_reserv=?, room_id=?, guest_id=? where reserv_id=?";
+        jdbcTemplate.update(sql, reservation.getReservId(), reservation.getStartReserv(), reservation.getEndReserv(),
+                reservation.getRoomId(), reservation.getGuestId());
+
+
     }
 
-    public void deleteReservation(Reservation reservation) {
+    public void deleteReservation(int reservId) {
+
+        String sql = "delete from reservation where reserv_id=?";
+        jdbcTemplate.update(sql, reservId);
 
     }
 

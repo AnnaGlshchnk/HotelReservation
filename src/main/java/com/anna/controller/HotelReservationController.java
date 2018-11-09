@@ -1,13 +1,12 @@
 package com.anna.controller;
 
 
+import com.anna.entity.Reservation;
 import com.anna.service.HotelReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/")
@@ -37,6 +36,36 @@ public class HotelReservationController {
     public String getAllReservation(@PathVariable("roomId") int roomId, Model model){
         model.addAttribute("reservation", hotelReservationService.showReservation(roomId));
         return "showReservation";
+    }
+
+    @GetMapping("/addReservation")
+    public String createReservation(){
+        return "createReservation";
+    }
+
+    @PostMapping("/addReservation")
+    public String addResrvation(@ModelAttribute("reservation") Reservation reservation){
+        hotelReservationService.addReservation(reservation);
+        return "redirect:/room/" + reservation.getRoomId();
+    }
+
+    @GetMapping("/updateReservation/{reservId}")
+    public String update(@PathVariable("reservId") int reservId, Model model){
+        model.addAttribute("reservation", hotelReservationService.showReservation(reservId));
+        hotelReservationService.showReservation(reservId);
+        return "updateReservation";
+    }
+
+    @PostMapping("/updateReservation")
+    public String updateResrvation(@ModelAttribute("reservation") Reservation reservation){
+        hotelReservationService.updateReservation(reservation);
+        return "redirect:/hotels";
+    }
+
+    @GetMapping("/delete/{reservId}")
+    public String delete(@PathVariable("reservId") int reservId){
+        hotelReservationService.deleteReservation(reservId);
+        return "redirect:/hotels";
     }
 
 }

@@ -10,7 +10,6 @@ public class Reservation {
     private int roomId;
     private  int guestId;
     private Guest guest;
-    private List<Reservation> reservations;
 
     public Reservation() {
     }

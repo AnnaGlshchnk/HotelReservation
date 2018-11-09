@@ -6,7 +6,7 @@ public class Room {
     private int roomId;
     private int price;
     private int hotelId;
-    private List<Room> rooms;
+
 
     public Room() {
     }

@@ -14,10 +14,10 @@ public interface HotelReservationDao {
 
     List showReservation(int roomId);
 
-    void addReservation(Reservation reservation);
+    int addReservation(Reservation reservation);
 
     void updateReservation(Reservation reservation);
 
-    void deleteReservation(Reservation reservation);
+    void deleteReservation(int reservId);
 
 }
