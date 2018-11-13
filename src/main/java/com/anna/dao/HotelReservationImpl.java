@@ -45,9 +45,9 @@ public class HotelReservationImpl implements HotelReservationDao{
 
     public void updateReservation(Reservation reservation) {
 
-        String sql = "update reservation set start_reserv=?, end_reserv=?, room_id=?, guest_id=? where reserv_id=?";
-        jdbcTemplate.update(sql, reservation.getReservId(), reservation.getStartReserv(), reservation.getEndReserv(),
-                reservation.getRoomId(), reservation.getGuestId());
+        String sql = "update reservation set start_reserv=?, end_reserv=?, room_id=? where reserv_id=?";
+        jdbcTemplate.update(sql, reservation.getStartReserv(), reservation.getEndReserv(),
+                reservation.getRoomId(), reservation.getReservId());
 
 
     }

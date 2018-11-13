@@ -6,17 +6,15 @@
 </head>
 <body>
 
-<form name="reservation" action="/updateReservation" method="post">
-    <p>ID</p>
-    <input title="ReservId" type="text" name="reservId" value="${reservation.reservId}">
+<form action="/updateReservation" method="post">
+
     <p>Start</p>
-    <input title="startReserv" type="text" name="startReserv" value="${reservation.startReserv}">
+    <input title="startReserv" type="text" name="startReserv" >
     <p>End</p>
-    <input title="endReserv" type="text" name="endReserv" value="${reservation.endReserv}">
+    <input title="endReserv" type="text" name="endReserv">
     <p>Room</p>
-    <input title="roomId" type="text" name="roomId" value="${reservation.roomId}">
-    <p>Guest</p>
-    <input title="guestId" type="text" name="guestId" value="${reservation.guestId}>
+    <input title="roomId" type="text" name="roomId">
+
     <input type="submit" value="Add">
 </form>
 

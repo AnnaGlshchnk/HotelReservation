@@ -59,13 +59,13 @@ public class HotelReservationController {
     @PostMapping("/updateReservation")
     public String updateResrvation(@ModelAttribute("reservation") Reservation reservation){
         hotelReservationService.updateReservation(reservation);
-        return "redirect:/hotels";
+        return "redirect:/room/" + reservation.getRoomId();
     }
 
     @GetMapping("/delete/{reservId}")
     public String delete(@PathVariable("reservId") int reservId){
         hotelReservationService.deleteReservation(reservId);
-        return "redirect:/hotels";
+        return "redirect:/room/" + reservId;
     }
 
 }
