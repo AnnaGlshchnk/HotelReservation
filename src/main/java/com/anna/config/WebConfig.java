@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 @Configuration
 @EnableWebMvc
 @PropertySource("classpath:sql.properties")
-@ComponentScan(basePackages = "com.anna.controller")
+@ComponentScan(basePackages = "com.anna")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

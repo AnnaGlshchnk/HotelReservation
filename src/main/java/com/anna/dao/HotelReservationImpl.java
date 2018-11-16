@@ -4,7 +4,11 @@ package com.anna.dao;
 import com.anna.entity.*;
 import com.anna.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,52 +16,74 @@ import java.util.List;
 @Repository
 public class HotelReservationImpl implements HotelReservationDao{
 
-    private final JdbcTemplate jdbcTemplate;
+    private static final String HOTEL_ID = "hotelId";
+    private static final String ROOM_ID = "roomId";
+    private static final String START_RESERVATION = "startReserv";
+    private static final String END_RESERVATION = "endReserv";
+    private static final String GUEST_ID = "guestId";
+    private static final String RESERV_ID = "reservId";
+
+    @Value("${HotelReservationDaoSql.showHotel}")
+    private String showHotelSql;
+    @Value("${HotelReservationDaoSql.showRoom}")
+    private String showRoomSql;
+    @Value("${HotelReservationDaoSql.showReservation}")
+    private String showReservationSql;
+    @Value("${HotelReservationDaoSql.addReservation}")
+    private String addReservationSql;
+    @Value("${HotelReservationDaoSql.updateReservation}")
+    private String updateReservationSql;
+    @Value("${HotelReservationDaoSql.deleteReservation}")
+    private String deleteReservationSql;
+
+    private final NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    public HotelReservationImpl(JdbcTemplate jdbcTemplate){
+    public HotelReservationImpl(NamedParameterJdbcTemplate jdbcTemplate){
         this.jdbcTemplate = jdbcTemplate;
     }
 
 
     public List<Hotel> showHotel() {
-        String sql = "select * from hotel";
-        return jdbcTemplate.query(sql, new HotelMapper());
+        return jdbcTemplate.query(showHotelSql, new HotelMapper());
     }
 
     public List showRoom(int hotelId){
-        String sql = "select * from room where hotel_id=?";
-        return jdbcTemplate.query(sql, new RoomMapper(), hotelId);
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource(HOTEL_ID, hotelId);
+        return  jdbcTemplate.query(showRoomSql, parameterSource, new RoomMapper());
     }
 
     public List showReservation(int roomId) {
-        String sql = "select reservation.reserv_id, reservation.start_reserv, reservation.end_reserv, reservation.room_id, guest.guest_id, guest.first_name, guest.surname from reservation left join guest on reservation.guest_id=guest.guest_id where room_id=?";
-        return jdbcTemplate.query(sql, new ReservationMapper(), roomId);
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource(ROOM_ID, roomId);
+        return jdbcTemplate.query(showReservationSql, parameterSource,new ReservationMapper());
     }
 
     public int addReservation(Reservation reservation) {
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(START_RESERVATION, reservation.getStartReserv());
+        parameterSource.addValue(END_RESERVATION, reservation.getEndReserv());
+        parameterSource.addValue(ROOM_ID, reservation.getRoomId());
+        parameterSource.addValue(GUEST_ID, reservation.getGuestId());
+        jdbcTemplate.update(addReservationSql, parameterSource, keyHolder);
+        return keyHolder.getKey().intValue();
+    }
 
-        String sql = "insert into reservation (start_reserv, end_reserv, room_id, guest_id) values (?, ?, ?, ?)";
-        return jdbcTemplate.update(sql, reservation.getStartReserv(), reservation.getEndReserv(),
-                                        reservation.getRoomId(), reservation.getGuestId());
+    public int updateReservation(Reservation reservation) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue(START_RESERVATION, reservation.getStartReserv());
+        parameterSource.addValue(END_RESERVATION, reservation.getEndReserv());
+        parameterSource.addValue(ROOM_ID, reservation.getRoomId());
+        parameterSource.addValue(GUEST_ID, reservation.getGuestId());
+        parameterSource.addValue(RESERV_ID, reservation.getReservId());
+        return jdbcTemplate.update(updateReservationSql, parameterSource);
+
 
     }
 
-    public void updateReservation(Reservation reservation) {
-
-        String sql = "update reservation set start_reserv=?, end_reserv=?, room_id=? where reserv_id=?";
-        jdbcTemplate.update(sql, reservation.getStartReserv(), reservation.getEndReserv(),
-                reservation.getRoomId(), reservation.getReservId());
-
+    public int deleteReservation(int reservId) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource(RESERV_ID, reservId);
+        return jdbcTemplate.update(deleteReservationSql,parameterSource);
 
     }
-
-    public void deleteReservation(int reservId) {
-
-        String sql = "delete from reservation where reserv_id=?";
-        jdbcTemplate.update(sql, reservId);
-
-    }
-
-
 }

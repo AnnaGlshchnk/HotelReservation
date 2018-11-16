@@ -6,16 +6,20 @@
 </head>
 <body>
 
-<form action="/updateReservation" method="post">
+<form name="reservation" action="/updateReservation" method="post">
 
+    <p>Id</p>
+    <input title="reservId" type="text" name="reservId" value="${reservId}">
     <p>Start</p>
-    <input title="startReserv" type="text" name="startReserv" >
+    <input title="startReserv" type="date" name="startReserv">
     <p>End</p>
-    <input title="endReserv" type="text" name="endReserv">
+    <input title="endReserv" type="date" name="endReserv">
     <p>Room</p>
     <input title="roomId" type="text" name="roomId">
+    <p>Guest</p>
+    <input title="guestId" type="text" name="guestId" >
 
-    <input type="submit" value="Add">
+    <input type="submit" value="Edit">
 </form>
 
 </body>

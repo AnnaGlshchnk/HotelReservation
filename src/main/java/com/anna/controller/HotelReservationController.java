@@ -46,7 +46,7 @@ public class HotelReservationController {
     @PostMapping("/addReservation")
     public String addResrvation(@ModelAttribute("reservation") Reservation reservation){
         hotelReservationService.addReservation(reservation);
-        return "redirect:/room/" + reservation.getRoomId();
+        return "redirect:/hotels";
     }
 
     @GetMapping("/updateReservation/{reservId}")
@@ -59,13 +59,13 @@ public class HotelReservationController {
     @PostMapping("/updateReservation")
     public String updateResrvation(@ModelAttribute("reservation") Reservation reservation){
         hotelReservationService.updateReservation(reservation);
-        return "redirect:/room/" + reservation.getRoomId();
+        return "redirect:/hotels";
     }
 
     @GetMapping("/delete/{reservId}")
     public String delete(@PathVariable("reservId") int reservId){
         hotelReservationService.deleteReservation(reservId);
-        return "redirect:/room/" + reservId;
+        return "redirect:/hotels";
     }
 
 }

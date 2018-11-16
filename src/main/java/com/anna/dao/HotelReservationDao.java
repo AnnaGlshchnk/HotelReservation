@@ -16,8 +16,7 @@ public interface HotelReservationDao {
 
     int addReservation(Reservation reservation);
 
-    void updateReservation(Reservation reservation);
+    int updateReservation(Reservation reservation);
 
-    void deleteReservation(int reservId);
-
+    int deleteReservation(int reservId);
 }

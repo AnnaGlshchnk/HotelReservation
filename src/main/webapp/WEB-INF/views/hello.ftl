@@ -7,5 +7,6 @@
 <body>
 <h1>Hotel Reservation</h1>
 <a href="/hotels">Hotels</a>
+
 </body>
 </html>
