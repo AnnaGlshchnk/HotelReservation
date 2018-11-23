@@ -1,4 +1,4 @@
-package com.anna.dao;
+package com.anna.test;
 
 
 import com.anna.entity.*;
@@ -60,21 +60,22 @@ public class HotelReservationImpl implements HotelReservationDao{
 
     public int addReservation(Reservation reservation) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
-        parameterSource.addValue(START_RESERVATION, reservation.getStartReserv());
-        parameterSource.addValue(END_RESERVATION, reservation.getEndReserv());
-        parameterSource.addValue(ROOM_ID, reservation.getRoomId());
-        parameterSource.addValue(GUEST_ID, reservation.getGuestId());
+        MapSqlParameterSource parameterSource = build(reservation);
         jdbcTemplate.update(addReservationSql, parameterSource, keyHolder);
         return keyHolder.getKey().intValue();
     }
 
-    public int updateReservation(Reservation reservation) {
+    private MapSqlParameterSource build(Reservation reservation) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue(START_RESERVATION, reservation.getStartReserv());
         parameterSource.addValue(END_RESERVATION, reservation.getEndReserv());
         parameterSource.addValue(ROOM_ID, reservation.getRoomId());
         parameterSource.addValue(GUEST_ID, reservation.getGuestId());
+        return parameterSource;
+    }
+
+    public int updateReservation(Reservation reservation) {
+        MapSqlParameterSource parameterSource = build(reservation);
         parameterSource.addValue(RESERV_ID, reservation.getReservId());
         return jdbcTemplate.update(updateReservationSql, parameterSource);
 

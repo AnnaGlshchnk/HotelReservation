@@ -1,4 +1,4 @@
-package com.anna.dao;
+package com.anna.test;
 
 import com.anna.entity.*;
 

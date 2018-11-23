@@ -14,6 +14,21 @@ public class Reservation {
     public Reservation() {
     }
 
+    public Reservation(String startReserv, String endReserv, int roomId, int guestId) {
+        this.startReserv = startReserv;
+        this.endReserv = endReserv;
+        this.roomId = roomId;
+        this.guestId = guestId;
+    }
+
+    public Reservation(int reservId, String startReserv, String endReserv, int roomId, int guestId) {
+        this.reservId = reservId;
+        this.startReserv = startReserv;
+        this.endReserv = endReserv;
+        this.roomId = roomId;
+        this.guestId = guestId;
+    }
+
     public int getReservId() {
         return reservId;
     }
