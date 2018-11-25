@@ -51,6 +51,13 @@ public class HotelReservationServiceMockTest {
 
     @Test
     public void updateReservation() {
+
+        Reservation reservation = new Reservation(1, "000", "111", 1 ,2);
+        expect(hotelReservationMockDao.updateReservation(anyObject(Reservation.class))).andReturn(1);
+        replay(hotelReservationMockDao);
+
+        Integer id = hotelReservationService.updateReservation(reservation);
+        Assert.assertEquals(id, (Integer) 1);
     }
 
     @Test
@@ -59,7 +66,8 @@ public class HotelReservationServiceMockTest {
         expect(hotelReservationMockDao.deleteReservation(1)).andReturn(0);
         replay(hotelReservationMockDao);
 
-        hotelReservationService.deleteReservation(1);
+        Integer id = hotelReservationService.deleteReservation(1);
+        Assert.assertEquals(id, (Integer) 0);
 
 
 
