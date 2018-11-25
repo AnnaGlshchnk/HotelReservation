@@ -1,5 +1,7 @@
 package com.anna.config;
 
+import com.anna.service.HotelReservationService;
+import com.anna.service.HotelReservationServiceImpl;
 import com.anna.test.HotelReservationDao;
 import com.anna.test.HotelReservationImpl;
 import org.springframework.context.annotation.Bean;
@@ -38,4 +40,8 @@ public class TestConfig {
         return new HotelReservationImpl(getJdbcTemplate());
     }
 
+    @Bean
+    public HotelReservationService getHotelReservationService(){
+        return new HotelReservationServiceImpl(getHotelReservationDao());
+    }
 }
