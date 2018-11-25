@@ -8,6 +8,11 @@ public class Hotel {
     public Hotel() {
     }
 
+    public Hotel(int hotelId, String hotel) {
+        this.hotelId = hotelId;
+        this.hotel = hotel;
+    }
+
     public String getHotel() {
         return hotel;
     }

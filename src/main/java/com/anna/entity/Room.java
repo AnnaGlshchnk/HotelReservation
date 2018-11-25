@@ -11,6 +11,11 @@ public class Room {
     public Room() {
     }
 
+    public Room(int roomId, int price, int hotelId) {
+        this.roomId = roomId;
+        this.price = price;
+        this.hotelId = hotelId;
+    }
 
     public int getRoomId() {
         return roomId;
