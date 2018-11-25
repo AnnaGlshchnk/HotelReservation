@@ -14,7 +14,7 @@ public interface HotelReservationService {
     List showReservation(int roomId);
 
 
-    void addReservation(Reservation reservation);
+    Integer addReservation(Reservation reservation);
 
     void updateReservation(Reservation reservation);
 

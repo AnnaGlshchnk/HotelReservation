@@ -24,8 +24,9 @@ public class HotelReservationServiceImpl implements HotelReservationService {
 
     public List showReservation(int roomId) { return hotelReservationDao.showReservation(roomId); }
 
-    public void addReservation(Reservation reservation) {
+    public Integer addReservation(Reservation reservation) {
         hotelReservationDao.addReservation(reservation);
+        return null;
     }
 
     public void updateReservation(Reservation reservation) {

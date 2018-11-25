@@ -22,10 +22,10 @@ import static org.easymock.EasyMock.*;
 public class HotelReservationServiceMockTest {
 
     @Autowired
-    public HotelReservationService hotelReservationService;
+    private HotelReservationService hotelReservationService;
 
     @Autowired
-    HotelReservationDao hotelReservationMockDao;
+    private HotelReservationDao hotelReservationMockDao;
 
     @After
     public void clean() {
@@ -37,17 +37,16 @@ public class HotelReservationServiceMockTest {
         reset(hotelReservationMockDao);
     }
 
+
     @Test
     public void addReservation() {
 
-        Reservation reservation = new Reservation("147", "741", 1, 1);
-        expect(hotelReservationMockDao.addReservation(reservation)).andReturn(5);
+        Reservation reservation = new Reservation("1507", "741", 1, 1);
+        expect(hotelReservationMockDao.addReservation(anyObject(Reservation.class))).andReturn(5);
         replay(hotelReservationMockDao);
 
-        hotelReservationService.addReservation(reservation);
-        List reservations = hotelReservationService.showReservation(1);
-        Assert.assertTrue(reservations.size() == 3);
-
+        Integer id = hotelReservationService.addReservation(reservation);
+        Assert.assertEquals(id, (Integer) 5);
     }
 
     @Test
@@ -57,8 +56,11 @@ public class HotelReservationServiceMockTest {
     @Test
     public void deleteReservation() {
 
-        expect(hotelReservationMockDao.deleteReservation(1));
+        expect(hotelReservationMockDao.deleteReservation(1)).andReturn(0);
         replay(hotelReservationMockDao);
+
+        hotelReservationService.deleteReservation(1);
+
 
 
     }
