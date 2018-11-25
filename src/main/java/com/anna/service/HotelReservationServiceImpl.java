@@ -15,6 +15,9 @@ public class HotelReservationServiceImpl implements HotelReservationService {
     @Autowired
     private HotelReservationDao hotelReservationDao;
 
+    public HotelReservationServiceImpl(HotelReservationDao hotelReservationDao) {
+    }
+
     public List<Hotel> showHotel() { return hotelReservationDao.showHotel(); }
 
     public List showRoom(int hotelId) { return hotelReservationDao.showRoom(hotelId); }

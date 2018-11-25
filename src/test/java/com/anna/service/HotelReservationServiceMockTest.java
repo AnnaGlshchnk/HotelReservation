@@ -44,7 +44,7 @@ public class HotelReservationServiceMockTest {
         expect(hotelReservationMockDao.addReservation(reservation)).andReturn(5);
         replay(hotelReservationMockDao);
 
-        Integer reservId = hotelReservationService.addReservation(reservation);
+        hotelReservationService.addReservation(reservation);
         List reservations = hotelReservationService.showReservation(1);
         Assert.assertTrue(reservations.size() == 3);
 
