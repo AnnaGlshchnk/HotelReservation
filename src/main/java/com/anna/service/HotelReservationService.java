@@ -16,8 +16,8 @@ public interface HotelReservationService {
 
     Integer addReservation(Reservation reservation);
 
-    void updateReservation(Reservation reservation);
+    Integer updateReservation(Reservation reservation);
 
-    void deleteReservation(int reservId);
+    Integer deleteReservation(int reservId);
 
 }
