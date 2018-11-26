@@ -19,7 +19,6 @@ import java.util.List;
 @ContextConfiguration(classes = TestConfig.class)
 public class HotelReservationImplTest {
 
-
     @Autowired
     HotelReservationDao hotelReservationDao;
 
@@ -59,7 +58,7 @@ public class HotelReservationImplTest {
     @Test
     public void updateReservation() {
 
-        Reservation reservation = new Reservation(3, "31", "432", 3 ,1);
+        Reservation reservation = new Reservation(3, "31", "432", 3, 1);
         reservation.setStartReserv("753");
         reservation.setEndReserv("951");
         hotelReservationDao.updateReservation(reservation);
