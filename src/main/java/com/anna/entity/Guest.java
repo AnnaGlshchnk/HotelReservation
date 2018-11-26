@@ -12,6 +12,11 @@ public class Guest {
         this.surname = surname;
     }
 
+    public Guest(String firstName, String surname) {
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public int getGuestId() {
         return guestId;
     }

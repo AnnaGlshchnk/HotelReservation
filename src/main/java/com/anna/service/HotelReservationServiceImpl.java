@@ -1,6 +1,6 @@
 package com.anna.service;
 
-import com.anna.test.HotelReservationDao;
+import com.anna.dao.HotelReservationDao;
 import com.anna.entity.Hotel;
 import com.anna.entity.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
