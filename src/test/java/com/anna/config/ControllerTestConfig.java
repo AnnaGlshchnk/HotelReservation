@@ -1,23 +1,21 @@
 package com.anna.config;
 
+import com.anna.controller.HotelReservationController;
 import com.anna.service.HotelReservationService;
 import com.anna.service.HotelReservationServiceImpl;
-import com.anna.dao.HotelReservationDao;
-import com.anna.dao.HotelReservationImpl;
 import org.easymock.EasyMock;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
-public class ServiceImplMockTestConfig {
-
-    @Bean
-    public HotelReservationDao hotelReservationDao(){
-        return EasyMock.createMock(HotelReservationImpl.class);
-    }
+@EnableWebMvc
+@ComponentScan(basePackages = "com.anna.*")
+public class ControllerTestConfig {
 
     @Bean
     public HotelReservationService hotelReservationService(){
-        return new HotelReservationServiceImpl(hotelReservationDao());
+        return EasyMock.createMock(HotelReservationService.class);
     }
 }

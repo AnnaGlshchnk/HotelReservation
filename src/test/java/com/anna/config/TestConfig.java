@@ -2,13 +2,12 @@ package com.anna.config;
 
 import com.anna.service.HotelReservationService;
 import com.anna.service.HotelReservationServiceImpl;
-import com.anna.test.HotelReservationDao;
-import com.anna.test.HotelReservationImpl;
+import com.anna.dao.HotelReservationDao;
+import com.anna.dao.HotelReservationImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 

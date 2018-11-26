@@ -5,7 +5,7 @@ import com.anna.config.ServiceImplMockTestConfig;
 import com.anna.entity.Hotel;
 import com.anna.entity.Reservation;
 import com.anna.entity.Room;
-import com.anna.test.HotelReservationDao;
+import com.anna.dao.HotelReservationDao;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
