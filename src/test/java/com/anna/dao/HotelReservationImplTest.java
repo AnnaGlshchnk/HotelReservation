@@ -44,7 +44,7 @@ public class HotelReservationImplTest {
     public void showReservation() {
 
         List reservations = hotelReservationDao.showReservation(1);
-        Assert.assertEquals(2, reservations.size());
+        Assert.assertEquals(3, reservations.size());
     }
 
     @Test
@@ -59,12 +59,12 @@ public class HotelReservationImplTest {
     @Test
     public void updateReservation() {
 
-        Reservation reservation = new Reservation(1, "31", "432", 1 ,1);
+        Reservation reservation = new Reservation(3, "31", "432", 3 ,1);
         reservation.setStartReserv("753");
         reservation.setEndReserv("951");
         hotelReservationDao.updateReservation(reservation);
-        List reservations = hotelReservationDao.showReservation(1);
-        Assert.assertEquals(2, reservations.size());
+        List reservations = hotelReservationDao.showReservation(3);
+        Assert.assertEquals(1, reservations.size());
         Assert.assertSame("753", reservation.getStartReserv());
 
 
