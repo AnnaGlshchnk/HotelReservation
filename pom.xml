@@ -6,102 +6,138 @@
 
     <groupId>com.anna</groupId>
     <artifactId>hotelReservation</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+
+    <modules>
+        <module>dao</module>
+        <module>service</module>
+        <module>dto</module>
+        <module>controller</module>
+        <module>aspect</module>
+    </modules>
 
     <properties>
-        <maven.compiler.source>1.7</maven.compiler.source>
-        <maven.compiler.target>1.7</maven.compiler.target>
+        <spring.version>4.3.10.RELEASE</spring.version>
+        <javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <h2.version>1.4.196</h2.version>
+        <junit.version>4.12</junit.version>
+        <easymock.version>3.4</easymock.version>
+        <jackson-databind.version>2.9.7</jackson-databind.version>
+        <log4j.version>2.4.1</log4j.version>
+        <jetty-maven-plugin.version>9.4.0.v20161208</jetty-maven-plugin.version>
+        <maven-compil-plugin.version>3.5.1</maven-compil-plugin.version>
+        <maven-surefire-plugin.version>2.12.4</maven-surefire-plugin.version>
     </properties>
 
-    <dependencies>
 
+    <dependencies>
+        <!--project-->
+        <dependency>
+            <groupId>com.anna</groupId>
+            <artifactId>dao</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anna</groupId>
+            <artifactId>dto</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anna</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anna</groupId>
+            <artifactId>controller</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anna</groupId>
+            <artifactId>aspect</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!--springframework-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.10.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
-            <version>4.3.10.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>4.3.9.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-            <version>2.3.23</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>4.3.10.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet-api.version}</version>
+        </dependency>
+
+        <!--mysql connector-->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.13</version>
+            <version>${mysql-connector-java.version}</version>
         </dependency>
+
+        <!--test-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
-            <version>4.3.10.RELEASE</version>
+            <version>${spring.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <version>1.4.196</version>
+            <version>${h2.version}</version>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.easymock</groupId>
             <artifactId>easymock</artifactId>
-            <version>3.4</version>
+            <version>${easymock.version}</version>
             <scope>test</scope>
         </dependency>
 
-
+        <!--logging-->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.4.1</version>
+            <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.4.1</version>
+            <version>${log4j.version}</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-jcl</artifactId>
-            <version>2.4.1</version>
+            <version>${log4j.version}</version>
         </dependency>
 
+        <!--jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.9.7</version>
+            <version>${jackson-databind.version}</version>
         </dependency>
 
     </dependencies>
@@ -112,7 +148,7 @@
                 <plugin>
                     <groupId>org.eclipse.jetty</groupId>
                     <artifactId>jetty-maven-plugin</artifactId>
-                    <version>9.4.0.v20161208</version>
+                    <version>${jetty-maven-plugin.version}</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -124,10 +160,18 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compil-plugin</artifactId>
-                    <version>3.5.1</version>
+                    <version>${maven-compil-plugin.version}</version>
                     <configuration>
                         <source>1.8</source>
                         <target>1.8</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven-surefire-plugin.version}</version>
+                    <configuration>
+                        <testFailureIgnore>true</testFailureIgnore>
                     </configuration>
                 </plugin>
             </plugins>
