@@ -12,6 +12,22 @@ public class Hotel {
     public Hotel() {
     }
 
+    public Hotel(int hotelId) {
+        this.hotelId = hotelId;
+    }
+
+    public Hotel(int hotelId, String hotelName, int countOfRoom) {
+        this.hotelId = hotelId;
+        this.hotelName = hotelName;
+        this.countOfRoom = countOfRoom;
+    }
+
+    public Hotel(int hotelId, String hotelName, List<Room> rooms) {
+        this.hotelId = hotelId;
+        this.hotelName = hotelName;
+        this.rooms = rooms;
+    }
+
     public int getHotelId() {
         return hotelId;
     }

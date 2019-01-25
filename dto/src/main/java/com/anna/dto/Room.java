@@ -9,6 +9,16 @@ public class Room {
     public Room() {
     }
 
+    public Room(int roomNumber) {
+        this.roomNumber = roomNumber;
+    }
+
+    public Room(int roomId, int roomNumber, Hotel hotel) {
+        this.roomId = roomId;
+        this.roomNumber = roomNumber;
+        this.hotel = hotel;
+    }
+
     public int getRoomId() {
         return roomId;
     }
