@@ -1,20 +1,11 @@
 package com.anna.dao;
 
-import com.anna.dto.Guest;
-import com.anna.dto.Reservation;
-import com.anna.dto.SaveGuest;
-import com.anna.dto.SaveReservation;
+import com.anna.model.Reservation;
+import com.anna.model.SaveReservation;
 
 import java.util.List;
 
-public interface GuestReservationDao {
-    List<Guest> getGuests();
-
-    Guest getGuestById(Integer guestId);
-
-    Integer addGuest(SaveGuest guest);
-
-    Integer updateGuest(Integer guestId, SaveGuest guest);
+public interface ReservationDao {
 
     List<Reservation> getReservations();
 

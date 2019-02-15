@@ -1,24 +1,15 @@
-package com.anna.dto;
+package com.anna.model;
 
 import java.util.Date;
 
-public class Reservation {
+public class SaveReservation {
 
-    private int reservationId;
     private Date startReservation;
     private Date finishReservation;
     private Guest guest;
     private Room room;
 
-    public Reservation() {
-    }
-
-    public int getReservationId() {
-        return reservationId;
-    }
-
-    public void setReservationId(int reservationId) {
-        this.reservationId = reservationId;
+    public SaveReservation() {
     }
 
     public Date getStartReservation() {

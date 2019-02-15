@@ -1,4 +1,4 @@
-package com.anna.dto;
+package com.anna.model;
 
 public class SaveGuest {
 

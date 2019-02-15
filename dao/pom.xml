@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>com.anna</groupId>
-            <artifactId>dto</artifactId>
+            <artifactId>model</artifactId>
         </dependency>
 
         <dependency>

@@ -12,7 +12,7 @@
     <modules>
         <module>dao</module>
         <module>service</module>
-        <module>dto</module>
+        <module>model</module>
         <module>controller</module>
         <module>aspect</module>
     </modules>
@@ -41,7 +41,7 @@
             </dependency>
             <dependency>
                 <groupId>com.anna</groupId>
-                <artifactId>dto</artifactId>
+                <artifactId>model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

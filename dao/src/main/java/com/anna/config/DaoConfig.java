@@ -14,7 +14,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @PropertySources({@PropertySource(value = "classpath:sql.properties"),
-        @PropertySource(value = "classpath:app.properties")})
+                  @PropertySource(value = "classpath:app.properties")})
 public class DaoConfig {
 
     @Value("${mySql.DriverClassName}")

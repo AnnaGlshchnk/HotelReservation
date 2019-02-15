@@ -1,4 +1,4 @@
-package com.anna.dto;
+package com.anna.model;
 
 import java.util.List;
 
@@ -14,6 +14,10 @@ public class Hotel {
 
     public Hotel(int hotelId) {
         this.hotelId = hotelId;
+    }
+
+    public Hotel(String hotelName) {
+        this.hotelName = hotelName;
     }
 
     public Hotel(int hotelId, String hotelName, int countOfRoom) {
