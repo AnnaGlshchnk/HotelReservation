@@ -12,6 +12,13 @@ public class SaveReservation {
     public SaveReservation() {
     }
 
+    public SaveReservation(Date startReservation, Date finishReservation, Guest guest, Room room) {
+        this.startReservation = startReservation;
+        this.finishReservation = finishReservation;
+        this.guest = guest;
+        this.room = room;
+    }
+
     public Date getStartReservation() {
         return startReservation;
     }

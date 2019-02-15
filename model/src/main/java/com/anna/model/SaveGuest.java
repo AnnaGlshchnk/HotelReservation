@@ -5,6 +5,11 @@ public class SaveGuest {
     private String firstName;
     private String surname;
 
+    public SaveGuest(String firstName, String surname) {
+        this.firstName = firstName;
+        this.surname = surname;
+    }
+
     public SaveGuest() {
     }
 

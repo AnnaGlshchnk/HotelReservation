@@ -32,7 +32,6 @@ public class GuestDaoImpl implements GuestDao {
     private String addGuestSql;
     @Value("${hotelreservation.updateGuest}")
     private String updateGuestSql;
-    @Value("${hotelreservation.getReservations}")
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 

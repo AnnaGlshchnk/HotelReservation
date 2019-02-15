@@ -84,7 +84,7 @@ public class ReservationDaoImpl implements ReservationDao {
         @Override
         public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new Reservation(rs.getInt("reservation_id"),
-                    rs.getDate("srart_reservation"),
+                    rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
                     new Room(rs.getInt("room_id")),
                     new Guest(rs.getInt("guest_id")));
@@ -95,7 +95,7 @@ public class ReservationDaoImpl implements ReservationDao {
         @Override
         public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
             return new Reservation(rs.getInt("reservation_id"),
-                    rs.getDate("srart_reservation"),
+                    rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
                     new Room(rs.getInt("room_number")),
                     new Hotel(rs.getString("hotel_name")),
