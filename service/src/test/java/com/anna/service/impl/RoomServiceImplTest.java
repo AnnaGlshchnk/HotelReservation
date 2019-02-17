@@ -1,8 +1,8 @@
-package com.anna.dao;
+package com.anna.service.impl;
 
-import com.anna.config.DaoTestConfig;
-import com.anna.dao.api.RoomDao;
+import com.anna.config.ServiceTestConfig;
 import com.anna.model.Room;
+import com.anna.service.api.RoomService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -16,27 +16,27 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = DaoTestConfig.class)
+@ContextConfiguration(classes = ServiceTestConfig.class)
 @Transactional
-public class RoomDaoImplTest {
-    private static final Logger LOGGER = LogManager.getLogger(GuestDaoImplTest.class);
+public class RoomServiceImplTest {
+    private static final Logger LOGGER = LogManager.getLogger(HotelServiceImplTest.class);
 
     @Autowired
-    private RoomDao roomDao;
+    RoomService roomService;
 
     @Test
-    public void getRoomsTest() {
+    public void getRooms() {
         LOGGER.debug("service: getRoomsTest");
 
-        List<Room> rooms = roomDao.getRooms();
+        List<Room> rooms = roomService.getRooms();
         Assert.assertEquals(rooms.size(), 6);
     }
 
     @Test
-    public void getRoomByIdTest() {
+    public void getRoomById() {
         LOGGER.debug("service: getRoomByIdTest");
 
-        Room room = roomDao.getRoomById(1);
+        Room room = roomService.getRoomById(1);
         Assert.assertNotNull(room);
         Assert.assertEquals(room.getRoomNumber(), 1);
     }

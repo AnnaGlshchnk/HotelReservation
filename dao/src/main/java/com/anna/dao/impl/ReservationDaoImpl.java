@@ -1,5 +1,6 @@
-package com.anna.dao;
+package com.anna.dao.impl;
 
+import com.anna.dao.api.ReservationDao;
 import com.anna.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +22,7 @@ public class ReservationDaoImpl implements ReservationDao {
     private static String START_RESERVATION = "startReservation";
     private static String END_RESERVATION = "endReservation";
     private static String ROOM_ID = "roomId";
+    private static String GUEST_ID = "guestId";
 
     @Value("${hotelreservation.getReservations}")
     private String getReservationSql;
@@ -58,8 +60,9 @@ public class ReservationDaoImpl implements ReservationDao {
         mapSqlParameterSource.addValue(START_RESERVATION, reservation.getStartReservation());
         mapSqlParameterSource.addValue(END_RESERVATION, reservation.getFinishReservation());
         mapSqlParameterSource.addValue(ROOM_ID, reservation.getRoom().getRoomId());
+        mapSqlParameterSource.addValue(GUEST_ID, reservation.getGuest().getGuestId());
 
-        namedParameterJdbcTemplate.update(updateReservationSql, mapSqlParameterSource, keyHolder);
+        namedParameterJdbcTemplate.update(addReservationSql, mapSqlParameterSource, keyHolder);
         return keyHolder.getKey().intValue();
     }
 
@@ -69,6 +72,7 @@ public class ReservationDaoImpl implements ReservationDao {
         mapSqlParameterSource.addValue(START_RESERVATION, reservation.getStartReservation());
         mapSqlParameterSource.addValue(END_RESERVATION, reservation.getFinishReservation());
         mapSqlParameterSource.addValue(ROOM_ID, reservation.getRoom().getRoomId());
+        mapSqlParameterSource.addValue(GUEST_ID, reservation.getGuest().getGuestId());
 
         return namedParameterJdbcTemplate.update(updateReservationSql, mapSqlParameterSource);
     }
@@ -83,18 +87,18 @@ public class ReservationDaoImpl implements ReservationDao {
     private class ReservationMapper implements RowMapper<Reservation> {
         @Override
         public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Reservation(rs.getInt("reservation_id"),
+            return new Reservation(rs.getLong("reservation_id"),
                     rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
-                    new Room(rs.getInt("room_id")),
-                    new Guest(rs.getInt("guest_id")));
+                    new Room(rs.getLong("room_id")),
+                    new Guest(rs.getLong("guest_id")));
         }
     }
 
     private class ReservationDetailsMapper implements RowMapper<Reservation> {
         @Override
         public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Reservation(rs.getInt("reservation_id"),
+            return new Reservation(rs.getLong("reservation_id"),
                     rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
                     new Room(rs.getInt("room_number")),

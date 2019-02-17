@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Reservation {
 
-    private int reservationId;
+    private long reservationId;
     private Date startReservation;
     private Date finishReservation;
     private Guest guest;
@@ -14,14 +14,18 @@ public class Reservation {
     public Reservation() {
     }
 
-    public Reservation(int reservationId, Room room, Date startReservation, Date finishReservation) {
+    public Reservation(long reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public Reservation(long reservationId, Room room, Date startReservation, Date finishReservation) {
         this.reservationId = reservationId;
         this.room = room;
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
     }
 
-    public Reservation(int reservationId, Date startReservation, Date finishReservation, Room room, Guest guest) {
+    public Reservation(long reservationId, Date startReservation, Date finishReservation, Room room, Guest guest) {
         this.reservationId = reservationId;
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
@@ -29,7 +33,7 @@ public class Reservation {
         this.guest = guest;
     }
 
-    public Reservation(int reservationId, Date startReservation, Date finishReservation,  Room room, Hotel hotel, Guest guest) {
+    public Reservation(long reservationId, Date startReservation, Date finishReservation,  Room room, Hotel hotel, Guest guest) {
         this.reservationId = reservationId;
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
@@ -38,11 +42,11 @@ public class Reservation {
         this.hotel = hotel;
     }
 
-    public int getReservationId() {
+    public long getReservationId() {
         return reservationId;
     }
 
-    public void setReservationId(int reservationId) {
+    public void setReservationId(long reservationId) {
         this.reservationId = reservationId;
     }
 

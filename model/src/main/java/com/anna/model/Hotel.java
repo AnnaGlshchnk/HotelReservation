@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Hotel {
 
-    private int hotelId;
+    private long hotelId;
     private String hotelName;
     private int countOfRoom;
     private List<Room> rooms;
@@ -12,7 +12,7 @@ public class Hotel {
     public Hotel() {
     }
 
-    public Hotel(int hotelId) {
+    public Hotel(long hotelId) {
         this.hotelId = hotelId;
     }
 
@@ -20,23 +20,23 @@ public class Hotel {
         this.hotelName = hotelName;
     }
 
-    public Hotel(int hotelId, String hotelName, int countOfRoom) {
+    public Hotel(long hotelId, String hotelName, int countOfRoom) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.countOfRoom = countOfRoom;
     }
 
-    public Hotel(int hotelId, String hotelName, List<Room> rooms) {
+    public Hotel(long hotelId, String hotelName, List<Room> rooms) {
         this.hotelId = hotelId;
         this.hotelName = hotelName;
         this.rooms = rooms;
     }
 
-    public int getHotelId() {
+    public long getHotelId() {
         return hotelId;
     }
 
-    public void setHotelId(int hotelId) {
+    public void setHotelId(long hotelId) {
         this.hotelId = hotelId;
     }
 

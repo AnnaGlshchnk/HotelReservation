@@ -1,6 +1,7 @@
 package com.anna.dao;
 
 import com.anna.config.DaoTestConfig;
+import com.anna.dao.api.GuestDao;
 import com.anna.model.Guest;
 import com.anna.model.SaveGuest;
 import org.apache.logging.log4j.LogManager;

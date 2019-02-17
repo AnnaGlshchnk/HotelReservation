@@ -1,5 +1,6 @@
-package com.anna.dao;
+package com.anna.dao.impl;
 
+import com.anna.dao.api.GuestDao;
 import com.anna.model.Guest;
 import com.anna.model.Reservation;
 import com.anna.model.Room;
@@ -20,9 +21,9 @@ import java.util.List;
 @Repository
 public class GuestDaoImpl implements GuestDao {
 
-    private static String GUEST_ID="guestId";
-    private static String FIRST_NAME="firstName";
-    private static String SURNAME="surname";
+    private static String GUEST_ID = "guestId";
+    private static String FIRST_NAME = "firstName";
+    private static String SURNAME = "surname";
 
     @Value("${hotelreservation.getGuests}")
     private String getGuestsSql;
@@ -76,22 +77,22 @@ public class GuestDaoImpl implements GuestDao {
     private class GuestMapper implements RowMapper<Guest> {
         @Override
         public Guest mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Guest(rs.getInt("guest_id"),
-                             rs.getString("first_name"),
-                             rs.getString("surname"));
+            return new Guest(rs.getLong("guest_id"),
+                    rs.getString("first_name"),
+                    rs.getString("surname"));
         }
     }
 
     private class GuestWithDetailsMapper implements RowMapper<Guest> {
         @Override
         public Guest mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Guest(rs.getInt("guest_id"),
+            return new Guest(rs.getLong("guest_id"),
                     rs.getString("first_name"),
                     rs.getString("surname"),
-                    new Reservation(rs.getInt("reservation_id"),
-                            new Room(rs.getInt("room_id")),
-                                    rs.getDate("start_reservation"),
-                                    rs.getDate("end_reservation")));
+                    new Reservation(rs.getLong("reservation_id"),
+                            new Room(rs.getLong("room_id")),
+                            rs.getDate("start_reservation"),
+                            rs.getDate("end_reservation")));
         }
     }
 }

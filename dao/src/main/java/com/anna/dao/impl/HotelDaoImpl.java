@@ -1,5 +1,6 @@
-package com.anna.dao;
+package com.anna.dao.impl;
 
+import com.anna.dao.api.HotelDao;
 import com.anna.model.Hotel;
 import com.anna.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +47,7 @@ public class HotelDaoImpl implements HotelDao {
     private class HotelMapper implements RowMapper<Hotel> {
         @Override
         public Hotel mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Hotel(rs.getInt("hotel_id"),
+            return new Hotel(rs.getLong("hotel_id"),
                     rs.getString("hotel_name"),
                     rs.getInt("countOfRooms"));
         }
@@ -55,7 +56,7 @@ public class HotelDaoImpl implements HotelDao {
     private class HotelDetailsMapper implements RowMapper<Hotel> {
         @Override
         public Hotel mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Hotel hotel = new Hotel(rs.getInt("hotel_id"),
+            Hotel hotel = new Hotel(rs.getLong("hotel_id"),
                                     rs.getString("hotel_name"),
                                     new ArrayList<>());
 

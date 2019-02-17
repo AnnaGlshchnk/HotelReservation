@@ -2,7 +2,7 @@ package com.anna.model;
 
 public class Guest {
 
-    private int guestId;
+    private long guestId;
     private String firstName;
     private String surname;
     private Reservation reservation;
@@ -10,7 +10,7 @@ public class Guest {
     public Guest() {
     }
 
-    public Guest(int guestId) {
+    public Guest(long guestId) {
         this.guestId = guestId;
     }
 
@@ -19,24 +19,24 @@ public class Guest {
         this.surname = surname;
     }
 
-    public Guest(int guestId, String firstName, String surname) {
+    public Guest(long guestId, String firstName, String surname) {
         this.guestId = guestId;
         this.firstName = firstName;
         this.surname = surname;
     }
 
-    public Guest(int guestId, String firstName, String surname, Reservation reservation) {
+    public Guest(long guestId, String firstName, String surname, Reservation reservation) {
         this.guestId = guestId;
         this.firstName = firstName;
         this.surname = surname;
         this.reservation = reservation;
     }
 
-    public int getGuestId() {
+    public long getGuestId() {
         return guestId;
     }
 
-    public void setGuestId(int guestId) {
+    public void setGuestId(long guestId) {
         this.guestId = guestId;
     }
 

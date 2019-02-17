@@ -8,6 +8,14 @@ import com.anna.dao.impl.GuestDaoImpl;
 import com.anna.dao.impl.HotelDaoImpl;
 import com.anna.dao.impl.ReservationDaoImpl;
 import com.anna.dao.impl.RoomDaoImpl;
+import com.anna.service.api.GuestService;
+import com.anna.service.api.HotelService;
+import com.anna.service.api.ReservationService;
+import com.anna.service.api.RoomService;
+import com.anna.service.impl.GuestServiceImpl;
+import com.anna.service.impl.HotelServiceImpl;
+import com.anna.service.impl.ReservationServiceImpl;
+import com.anna.service.impl.RoomServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -23,7 +31,7 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource("classpath:sql.properties")
 @EnableTransactionManagement
-public class DaoTestConfig {
+public class ServiceTestConfig {
 
     @Bean
     public DataSource dataSource() {
@@ -37,32 +45,53 @@ public class DaoTestConfig {
     }
 
     @Bean
-    public NamedParameterJdbcTemplate namedParameterJdbcTemplate(DataSource dataSource) {
-        return new NamedParameterJdbcTemplate(dataSource);
+    public NamedParameterJdbcTemplate namedParameterJdbcTemplate() {
+        return new NamedParameterJdbcTemplate(dataSource());
     }
 
     @Bean
-    public PlatformTransactionManager txManager(DataSource dataSource) {
-        return new DataSourceTransactionManager(dataSource);
+    public PlatformTransactionManager txManager() {
+        return new DataSourceTransactionManager(dataSource());
     }
 
     @Bean
-    public GuestDao guestDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        return new GuestDaoImpl(namedParameterJdbcTemplate);
+    public GuestDao guestDao() {
+        return new GuestDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public HotelDao hotelDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        return new HotelDaoImpl(namedParameterJdbcTemplate);
+    public GuestService guestService() {
+        return new GuestServiceImpl(guestDao());
     }
 
     @Bean
-    public RoomDao roomDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        return new RoomDaoImpl(namedParameterJdbcTemplate);
+    public HotelDao hotelDao(){
+        return  new HotelDaoImpl(namedParameterJdbcTemplate());
     }
 
     @Bean
-    public ReservationDao reservationDao(NamedParameterJdbcTemplate namedParameterJdbcTemplate) {
-        return new ReservationDaoImpl(namedParameterJdbcTemplate);
+    public HotelService hotelService(){
+        return  new HotelServiceImpl(hotelDao());
     }
+
+    @Bean
+    public ReservationDao reservationDao(){
+        return  new ReservationDaoImpl(namedParameterJdbcTemplate());
+    }
+
+    @Bean
+    public ReservationService reservationService() {
+        return new ReservationServiceImpl(reservationDao());
+    }
+
+    @Bean
+    public RoomDao roomDao(){
+        return  new RoomDaoImpl(namedParameterJdbcTemplate());
+    }
+
+    @Bean
+    public RoomService roomService() {
+        return new RoomServiceImpl(roomDao());
+    }
+
 }

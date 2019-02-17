@@ -1,4 +1,4 @@
-package com.anna.dao;
+package com.anna.dao.api;
 
 import com.anna.model.Hotel;
 

@@ -1,8 +1,8 @@
-package com.anna.dao;
+package com.anna.service.impl;
 
-import com.anna.config.DaoTestConfig;
-import com.anna.dao.api.HotelDao;
+import com.anna.config.ServiceTestConfig;
 import com.anna.model.Hotel;
+import com.anna.service.api.HotelService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -15,31 +15,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static org.hamcrest.Matchers.*;
+
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = DaoTestConfig.class)
+@ContextConfiguration(classes = ServiceTestConfig.class)
 @Transactional
-public class HotelDaoImplTest {
-    private static final Logger LOGGER = LogManager.getLogger(HotelDaoImplTest.class);
+public class HotelServiceImplTest {
+    private static final Logger LOGGER = LogManager.getLogger(HotelServiceImplTest.class);
 
     @Autowired
-    private HotelDao hotelDao;
+    HotelService hotelService;
 
     @Test
     public void getHotelsTest() {
         LOGGER.debug("service: getHotelsTest");
 
-        List<Hotel> hotels = hotelDao.getHotels();
-        Assert.assertEquals(hotels.size(), 3);
+        List<Hotel> hotels = hotelService.getHotels();
+        Assert.assertEquals(3, hotels.size());
     }
 
     @Test
     public void getHotelByIdTest() {
         LOGGER.debug("service: getHotelByIdTest");
 
-        Hotel hotel = hotelDao.getHotelById(1);
-        Assert.assertNotNull(hotel);
-        Assert.assertEquals(hotel.getHotelId(), 1);
-        Assert.assertEquals(hotel.getHotelName(), "Hilton");
-
+        Hotel hotel = hotelService.getHotelById(1);
+        Assert.assertThat(hotel, allOf(hasProperty("hotelId", equalTo(1L)),
+                hasProperty("hotelName", equalTo("Hilton"))));
     }
 }
