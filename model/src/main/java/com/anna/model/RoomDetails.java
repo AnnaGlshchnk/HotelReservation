@@ -6,6 +6,9 @@ public class RoomDetails {
     private Room roomNumber;
     private Hotel hotelName;
 
+    public RoomDetails() {
+    }
+
     public RoomDetails(long roomId) {
         this.roomId = roomId;
     }

@@ -1,6 +1,5 @@
 package com.anna.controller;
 
-import com.anna.model.Guest;
 import com.anna.model.GuestDetails;
 import com.anna.model.GuestList;
 import com.anna.model.SaveGuest;

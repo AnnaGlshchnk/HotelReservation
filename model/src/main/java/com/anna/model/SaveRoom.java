@@ -4,6 +4,9 @@ public class SaveRoom {
 
     private long roomId;
 
+    public SaveRoom() {
+    }
+
     public SaveRoom(long roomId) {
         this.roomId = roomId;
     }
