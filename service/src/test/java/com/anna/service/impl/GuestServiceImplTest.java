@@ -2,6 +2,8 @@ package com.anna.service.impl;
 
 import com.anna.config.ServiceTestConfig;
 import com.anna.model.Guest;
+import com.anna.model.GuestDetails;
+import com.anna.model.GuestList;
 import com.anna.model.SaveGuest;
 import com.anna.service.api.GuestService;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServiceTestConfig.class)
@@ -33,7 +34,7 @@ public class GuestServiceImplTest {
     public void getGuestsTest() {
         LOGGER.debug("service: getGuestsTest");
 
-        List<Guest> guests = guestService.getGuests();
+        List<GuestList> guests = guestService.getGuests();
         Assert.assertEquals(4, guests.size());
     }
 
@@ -41,7 +42,7 @@ public class GuestServiceImplTest {
     public void getGuestByIdTest() {
         LOGGER.debug("service: getGuestByIdTest");
 
-        Guest guest = guestService.getGuestById(1);
+        GuestDetails guest = guestService.getGuestById(1);
         Assert.assertThat(guest, allOf(hasProperty("guestId", equalTo(1L)),
                 hasProperty("firstName", equalTo("Klaus")),
                 hasProperty("surname", equalTo("Schmidt"))));
@@ -53,7 +54,7 @@ public class GuestServiceImplTest {
 
         SaveGuest guest = new SaveGuest("Alan", "Lods");
         guestService.addGuest(guest);
-        Guest newGuest = guestService.getGuestById(5);
+        GuestDetails newGuest = guestService.getGuestById(5);
         Assert.assertThat(newGuest, allOf(hasProperty("guestId", equalTo(5L)),
                 hasProperty("firstName", equalTo("Alan")),
                 hasProperty("surname", equalTo("Lods"))));
@@ -66,7 +67,7 @@ public class GuestServiceImplTest {
         SaveGuest guest = new SaveGuest("Hilary", "Willis");
         guest.setFirstName("Hillary");
         guestService.updateGuest(2, guest);
-        Guest newGuest = guestService.getGuestById(2);
+        GuestDetails newGuest = guestService.getGuestById(2);
         Assert.assertEquals(newGuest.getFirstName(), "Hillary");
     }
 }

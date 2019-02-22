@@ -1,6 +1,7 @@
 package com.anna.dao.api;
 
 import com.anna.model.Reservation;
+import com.anna.model.ReservationDetails;
 import com.anna.model.SaveReservation;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface ReservationDao {
 
     List<Reservation> getReservations();
 
-    Reservation getReservationById(Integer reservationId);
+    ReservationDetails getReservationById(Integer reservationId);
 
     Integer addReservation(SaveReservation reservation);
 

@@ -2,7 +2,8 @@ package com.anna.dao;
 
 import com.anna.config.DaoTestConfig;
 import com.anna.dao.api.HotelDao;
-import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -28,7 +29,7 @@ public class HotelDaoImplTest {
     public void getHotelsTest() {
         LOGGER.debug("service: getHotelsTest");
 
-        List<Hotel> hotels = hotelDao.getHotels();
+        List<HotelData> hotels = hotelDao.getHotels();
         Assert.assertEquals(hotels.size(), 3);
     }
 
@@ -36,7 +37,7 @@ public class HotelDaoImplTest {
     public void getHotelByIdTest() {
         LOGGER.debug("service: getHotelByIdTest");
 
-        Hotel hotel = hotelDao.getHotelById(1);
+        HotelDetails hotel = hotelDao.getHotelById(1);
         Assert.assertNotNull(hotel);
         Assert.assertEquals(hotel.getHotelId(), 1);
         Assert.assertEquals(hotel.getHotelName(), "Hilton");

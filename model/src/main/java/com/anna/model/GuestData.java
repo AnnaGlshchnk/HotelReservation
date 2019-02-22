@@ -1,23 +1,13 @@
 package com.anna.model;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+public class GuestData {
 
-public class SaveGuest {
-
-    @Size(min = 2, max = 15)
-    @NotNull
     private String firstName;
-    @Size(min = 2, max = 15)
-    @NotNull
     private String surname;
 
-    public SaveGuest(String firstName, String surname) {
+    public GuestData(String firstName, String surname) {
         this.firstName = firstName;
         this.surname = surname;
-    }
-
-    public SaveGuest() {
     }
 
     public String getFirstName() {
@@ -36,4 +26,3 @@ public class SaveGuest {
         this.surname = surname;
     }
 }
-

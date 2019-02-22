@@ -2,10 +2,7 @@ package com.anna.dao;
 
 import com.anna.config.DaoTestConfig;
 import com.anna.dao.api.ReservationDao;
-import com.anna.model.Guest;
-import com.anna.model.Reservation;
-import com.anna.model.Room;
-import com.anna.model.SaveReservation;
+import com.anna.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -42,7 +39,7 @@ public class ReservationDaoImplTest {
     public void getReservationByIdTest() {
         LOGGER.debug("service: getReservationByIdTest");
 
-        Reservation reservation = reservationDao.getReservationById(1);
+        ReservationDetails reservation = reservationDao.getReservationById(1);
         Assert.assertNotNull(reservation);
         Assert.assertEquals(reservation.getReservationId(), 1);
         Assert.assertEquals(reservation.getGuest().getFirstName(), "Klaus");
@@ -57,9 +54,9 @@ public class ReservationDaoImplTest {
         Date start = simpleDateFormat.parse("2019-09-01");
         Date end = simpleDateFormat.parse("2019-09-06");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         reservationDao.addReservation(reservation);
-        Reservation newReservation = reservationDao.getReservationById(5);
+        ReservationDetails newReservation = reservationDao.getReservationById(5);
         Assert.assertNotNull(newReservation);
     }
 
@@ -73,10 +70,10 @@ public class ReservationDaoImplTest {
         Date end = simpleDateFormat.parse("2019-09-06");
         Date newEnd = simpleDateFormat.parse("2019-09-05");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         reservation.setFinishReservation(newEnd);
         reservationDao.updateReservation(2, reservation);
-        Reservation newReservation = reservationDao.getReservationById(2);
+        ReservationDetails newReservation = reservationDao.getReservationById(2);
         Assert.assertEquals(newEnd, newReservation.getFinishReservation());
     }
 

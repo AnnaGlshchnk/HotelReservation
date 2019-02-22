@@ -2,6 +2,7 @@ package com.anna.service.impl;
 
 import com.anna.config.ServiceTestConfig;
 import com.anna.model.Room;
+import com.anna.model.RoomDetails;
 import com.anna.service.api.RoomService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -28,7 +29,7 @@ public class RoomServiceImplTest {
     public void getRooms() {
         LOGGER.debug("service: getRoomsTest");
 
-        List<Room> rooms = roomService.getRooms();
+        List<RoomDetails> rooms = roomService.getRooms();
         Assert.assertEquals(rooms.size(), 6);
     }
 
@@ -36,8 +37,8 @@ public class RoomServiceImplTest {
     public void getRoomById() {
         LOGGER.debug("service: getRoomByIdTest");
 
-        Room room = roomService.getRoomById(1);
+        RoomDetails room = roomService.getRoomById(1);
         Assert.assertNotNull(room);
-        Assert.assertEquals(room.getRoomNumber(), 1);
+        Assert.assertEquals(room.getRoomId(), 1);
     }
 }

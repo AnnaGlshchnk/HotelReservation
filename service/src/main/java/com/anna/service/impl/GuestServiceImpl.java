@@ -2,6 +2,8 @@ package com.anna.service.impl;
 
 import com.anna.dao.api.GuestDao;
 import com.anna.model.Guest;
+import com.anna.model.GuestDetails;
+import com.anna.model.GuestList;
 import com.anna.model.SaveGuest;
 import com.anna.service.api.GuestService;
 import com.anna.service.exception.OperationFailedException;
@@ -21,12 +23,12 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public List<Guest> getGuests() throws OperationFailedException {
+    public List<GuestList> getGuests() throws OperationFailedException {
         return guestDao.getGuests();
     }
 
     @Override
-    public Guest getGuestById(Integer guestId) throws OperationFailedException {
+    public GuestDetails getGuestById(Integer guestId) throws OperationFailedException {
         return guestDao.getGuestById(guestId);
     }
 

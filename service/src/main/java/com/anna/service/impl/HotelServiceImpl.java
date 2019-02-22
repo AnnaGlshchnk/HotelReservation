@@ -1,7 +1,8 @@
 package com.anna.service.impl;
 
 import com.anna.dao.api.HotelDao;
-import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 import com.anna.service.api.HotelService;
 import com.anna.service.exception.OperationFailedException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
-    public List<Hotel> getHotels() throws OperationFailedException {
+    public List<HotelData> getHotels() throws OperationFailedException {
 
         return hotelDao.getHotels();
     }
 
     @Override
-    public Hotel getHotelById(Integer hotelId) throws OperationFailedException {
+    public HotelDetails getHotelById(Integer hotelId) throws OperationFailedException {
 
         return hotelDao.getHotelById(hotelId);
     }

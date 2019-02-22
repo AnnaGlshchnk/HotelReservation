@@ -1,12 +1,13 @@
 package com.anna.dao.api;
 
-import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 
 import java.util.List;
 
 public interface HotelDao {
 
-    List<Hotel> getHotels();
+    List<HotelData> getHotels();
 
-    Hotel getHotelById(Integer hotelId);
+    HotelDetails getHotelById(Integer hotelId);
 }

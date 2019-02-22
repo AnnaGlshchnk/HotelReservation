@@ -1,10 +1,7 @@
 package com.anna.dao.impl;
 
 import com.anna.dao.api.GuestDao;
-import com.anna.model.Guest;
-import com.anna.model.Reservation;
-import com.anna.model.Room;
-import com.anna.model.SaveGuest;
+import com.anna.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
@@ -16,6 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 @Repository
@@ -42,13 +40,13 @@ public class GuestDaoImpl implements GuestDao {
     }
 
     @Override
-    public List<Guest> getGuests() {
+    public List<GuestList> getGuests() {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(getGuestsSql, mapSqlParameterSource, new GuestMapper());
     }
 
     @Override
-    public Guest getGuestById(Integer guestId) {
+    public GuestDetails getGuestById(Integer guestId) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(GUEST_ID, guestId);
         return namedParameterJdbcTemplate.queryForObject(getGuestByIdSql, mapSqlParameterSource, new GuestWithDetailsMapper());
     }
@@ -74,25 +72,32 @@ public class GuestDaoImpl implements GuestDao {
         return namedParameterJdbcTemplate.update(updateGuestSql, mapSqlParameterSource);
     }
 
-    private class GuestMapper implements RowMapper<Guest> {
+    private class GuestMapper implements RowMapper<GuestList> {
         @Override
-        public Guest mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Guest(rs.getLong("guest_id"),
-                    rs.getString("first_name"),
-                    rs.getString("surname"));
+        public GuestList mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new GuestList(new Guest(rs.getLong("guest_id")),
+                    new GuestData(rs.getString("first_name"),
+                    (rs.getString("surname"))));
         }
     }
 
-    private class GuestWithDetailsMapper implements RowMapper<Guest> {
+    private class GuestWithDetailsMapper implements RowMapper<GuestDetails> {
         @Override
-        public Guest mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Guest(rs.getLong("guest_id"),
+        public GuestDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+            GuestDetails guestDetails =  new GuestDetails(rs.getLong("guest_id"),
                     rs.getString("first_name"),
                     rs.getString("surname"),
-                    new Reservation(rs.getLong("reservation_id"),
-                            new Room(rs.getLong("room_id")),
-                            rs.getDate("start_reservation"),
-                            rs.getDate("end_reservation")));
+                    new ArrayList<>(),
+                    new ArrayList<>());
+
+            do {
+                guestDetails.getReservation().add(new ReservationData(rs.getLong("reservation_id"),
+                        rs.getDate("start_reservation"),
+                        rs.getDate("end_reservation")));
+                guestDetails.getRoom().add(new Room(rs.getInt("room_number")));
+            } while (rs.next());
+
+            return guestDetails;
         }
     }
 }

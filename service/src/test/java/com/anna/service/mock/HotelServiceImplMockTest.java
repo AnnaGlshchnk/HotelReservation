@@ -2,7 +2,8 @@ package com.anna.service.mock;
 
 import com.anna.config.ServiceTestConfig;
 import com.anna.dao.api.HotelDao;
-import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 import com.anna.service.impl.HotelServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class HotelServiceImplMockTest {
     public void getHotelsTest() {
         LOGGER.debug("service: getHotelsTest");
 
-        List<Hotel> hotels = new ArrayList<>();
+        List<HotelData> hotels = new ArrayList<>();
         Mockito.when(mockHotelDao.getHotels()).thenReturn(hotels);
 
         hotels = hotelService.getHotels();
@@ -55,9 +56,9 @@ public class HotelServiceImplMockTest {
     public void getHotelByIdTest() {
         LOGGER.debug("service: getHotelByIdTest");
 
-        Mockito.when(mockHotelDao.getHotelById(1)).thenReturn(new Hotel(1));
+        Mockito.when(mockHotelDao.getHotelById(1)).thenReturn(new HotelDetails(1));
 
-        Hotel hotel = hotelService.getHotelById(1);
+        HotelDetails hotel = hotelService.getHotelById(1);
         Assert.assertEquals(1, hotel.getHotelId());
     }
 }

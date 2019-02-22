@@ -1,12 +1,12 @@
 package com.anna.dao.api;
 
-import com.anna.model.Room;
+import com.anna.model.RoomDetails;
 
 import java.util.List;
 
 public interface RoomDao {
 
-    List<Room> getRooms();
+    List<RoomDetails> getRooms();
 
-    Room getRoomById(Integer roomId);
+    RoomDetails getRoomById(Integer roomId);
 }

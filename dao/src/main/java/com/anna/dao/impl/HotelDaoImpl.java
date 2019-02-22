@@ -2,6 +2,8 @@ package com.anna.dao.impl;
 
 import com.anna.dao.api.HotelDao;
 import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 import com.anna.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,31 +35,31 @@ public class HotelDaoImpl implements HotelDao {
     }
 
 
-    public List<Hotel> getHotels() {
+    public List<HotelData> getHotels() {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(getHotelsSql, mapSqlParameterSource, new HotelMapper());
     }
 
-    public Hotel getHotelById(Integer hotelId) {
+    public HotelDetails getHotelById(Integer hotelId) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(HOTEL_ID, hotelId);
         return namedParameterJdbcTemplate.queryForObject(getHotelByIdSql, mapSqlParameterSource, new HotelDetailsMapper());
     }
 
 
-    private class HotelMapper implements RowMapper<Hotel> {
+    private class HotelMapper implements RowMapper<HotelData> {
         @Override
-        public Hotel mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Hotel(rs.getLong("hotel_id"),
-                    rs.getString("hotel_name"),
+        public HotelData mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new HotelData(rs.getLong("hotel_id"),
+                    new Hotel(rs.getString("hotel_name")),
                     rs.getInt("countOfRooms"));
         }
     }
 
-    private class HotelDetailsMapper implements RowMapper<Hotel> {
+    private class HotelDetailsMapper implements RowMapper<HotelDetails> {
         @Override
-        public Hotel mapRow(ResultSet rs, int rowNum) throws SQLException {
-            Hotel hotel = new Hotel(rs.getLong("hotel_id"),
-                                    rs.getString("hotel_name"),
+        public HotelDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+            HotelDetails hotel = new HotelDetails(rs.getLong("hotel_id"),
+                                    new Hotel(rs.getString("hotel_name")),
                                     new ArrayList<>());
 
             do {

@@ -3,6 +3,8 @@ package com.anna.service.mock;
 import com.anna.config.ServiceTestConfig;
 import com.anna.dao.api.GuestDao;
 import com.anna.model.Guest;
+import com.anna.model.GuestDetails;
+import com.anna.model.GuestList;
 import com.anna.model.SaveGuest;
 import com.anna.service.impl.GuestServiceImpl;
 import org.apache.logging.log4j.LogManager;
@@ -45,7 +47,7 @@ public class GuestServiceImplMockTest {
     public void getGuestsTest() {
         LOGGER.debug("service: getGuestsTest");
 
-        List<Guest> guests = new ArrayList<>();
+        List<GuestList> guests = new ArrayList<>();
         Mockito.when(mockGuestDao.getGuests()).thenReturn(guests);
 
         guests = guestService.getGuests();
@@ -56,9 +58,9 @@ public class GuestServiceImplMockTest {
     public void getGuestByIdTest() {
         LOGGER.debug("service: getGuestByIdTest");
 
-        Mockito.when(mockGuestDao.getGuestById(1)).thenReturn(new Guest(1));
+        Mockito.when(mockGuestDao.getGuestById(1)).thenReturn(new GuestDetails(1));
 
-        Guest guest = guestService.getGuestById(1);
+        GuestDetails guest = guestService.getGuestById(1);
         Assert.assertEquals(1, guest.getGuestId());
     }
 

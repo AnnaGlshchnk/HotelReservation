@@ -2,6 +2,7 @@ package com.anna.service.impl;
 
 import com.anna.dao.api.ReservationDao;
 import com.anna.model.Reservation;
+import com.anna.model.ReservationDetails;
 import com.anna.model.SaveReservation;
 import com.anna.service.api.ReservationService;
 import com.anna.service.exception.OperationFailedException;
@@ -28,7 +29,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservation getReservationById(Integer reservationId) throws OperationFailedException {
+    public ReservationDetails getReservationById(Integer reservationId) throws OperationFailedException {
         return reservationDao.getReservationById(reservationId);
     }
 

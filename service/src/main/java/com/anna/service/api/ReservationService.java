@@ -1,6 +1,7 @@
 package com.anna.service.api;
 
 import com.anna.model.Reservation;
+import com.anna.model.ReservationDetails;
 import com.anna.model.SaveReservation;
 import com.anna.service.exception.OperationFailedException;
 
@@ -10,7 +11,7 @@ public interface ReservationService {
 
     List<Reservation> getReservations() throws OperationFailedException;
 
-    Reservation getReservationById(Integer reservationId) throws OperationFailedException;
+    ReservationDetails getReservationById(Integer reservationId) throws OperationFailedException;
 
     Integer addReservation(SaveReservation reservation) throws OperationFailedException;
 

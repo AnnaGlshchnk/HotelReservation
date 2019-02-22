@@ -2,18 +2,26 @@ package com.anna.model;
 
 import java.util.Date;
 
-public class Reservation {
+public class ReservationDetails {
 
     private long reservationId;
     private Date startReservation;
     private Date finishReservation;
-    private Guest guest;
+    private GuestData guest;
+    private Room room;
+    private Hotel hotel;
 
-    public Reservation(long reservationId, Date startReservation, Date finishReservation, Guest guest) {
+    public ReservationDetails(long reservationId) {
+        this.reservationId = reservationId;
+    }
+
+    public ReservationDetails(long reservationId, Date startReservation, Date finishReservation, GuestData guest, Room room, Hotel hotel) {
         this.reservationId = reservationId;
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
         this.guest = guest;
+        this.room = room;
+        this.hotel = hotel;
     }
 
     public long getReservationId() {
@@ -40,11 +48,27 @@ public class Reservation {
         this.finishReservation = finishReservation;
     }
 
-    public Guest getGuest() {
+    public GuestData getGuest() {
         return guest;
     }
 
-    public void setGuest(Guest guest) {
+    public void setGuest(GuestData guest) {
         this.guest = guest;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public Hotel getHotel() {
+        return hotel;
+    }
+
+    public void setHotel(Hotel hotel) {
+        this.hotel = hotel;
     }
 }

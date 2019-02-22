@@ -1,7 +1,8 @@
 package com.anna.service.impl;
 
 import com.anna.config.ServiceTestConfig;
-import com.anna.model.Hotel;
+import com.anna.model.HotelData;
+import com.anna.model.HotelDetails;
 import com.anna.service.api.HotelService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,7 @@ public class HotelServiceImplTest {
     public void getHotelsTest() {
         LOGGER.debug("service: getHotelsTest");
 
-        List<Hotel> hotels = hotelService.getHotels();
+        List<HotelData> hotels = hotelService.getHotels();
         Assert.assertEquals(3, hotels.size());
     }
 
@@ -38,7 +39,7 @@ public class HotelServiceImplTest {
     public void getHotelByIdTest() {
         LOGGER.debug("service: getHotelByIdTest");
 
-        Hotel hotel = hotelService.getHotelById(1);
+        HotelDetails hotel = hotelService.getHotelById(1);
         Assert.assertThat(hotel, allOf(hasProperty("hotelId", equalTo(1L)),
                 hasProperty("hotelName", equalTo("Hilton"))));
     }

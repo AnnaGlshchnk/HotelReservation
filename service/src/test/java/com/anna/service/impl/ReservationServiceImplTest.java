@@ -1,10 +1,7 @@
 package com.anna.service.impl;
 
 import com.anna.config.ServiceTestConfig;
-import com.anna.model.Guest;
-import com.anna.model.Reservation;
-import com.anna.model.Room;
-import com.anna.model.SaveReservation;
+import com.anna.model.*;
 import com.anna.service.api.ReservationService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +46,7 @@ public class ReservationServiceImplTest {
         Date start = simpleDateFormat.parse("2018-07-12");
         Date end = simpleDateFormat.parse("2018-07-16");
 
-        Reservation reservation = reservationService.getReservationById(1);
+        ReservationDetails reservation = reservationService.getReservationById(1);
         Assert.assertThat(reservation, allOf(hasProperty("reservationId", equalTo(1L)),
                 hasProperty("startReservation", equalTo(start)),
                 hasProperty("finishReservation", equalTo(end))));
@@ -64,9 +61,9 @@ public class ReservationServiceImplTest {
         Date start = simpleDateFormat.parse("2019-09-01");
         Date end = simpleDateFormat.parse("2019-09-06");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         reservationService.addReservation(reservation);
-        Reservation newReservation = reservationService.getReservationById(5);
+        ReservationDetails newReservation = reservationService.getReservationById(5);
         Assert.assertThat(newReservation, allOf(hasProperty("reservationId", equalTo(5L)),
                 hasProperty("startReservation", equalTo(start)),
                 hasProperty("finishReservation", equalTo(end))));
@@ -82,10 +79,10 @@ public class ReservationServiceImplTest {
         Date end = simpleDateFormat.parse("2019-09-06");
         Date newEnd = simpleDateFormat.parse("2019-09-05");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         reservation.setFinishReservation(newEnd);
         reservationService.updateReservation(2, reservation);
-        Reservation newReservation = reservationService.getReservationById(2);
+        ReservationDetails newReservation = reservationService.getReservationById(2);
         Assert.assertThat(newReservation, allOf(hasProperty("reservationId", equalTo(2L)),
                 hasProperty("startReservation", equalTo(start)),
                 hasProperty("finishReservation", equalTo(newEnd))));

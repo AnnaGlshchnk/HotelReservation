@@ -3,6 +3,7 @@ package com.anna.dao;
 import com.anna.config.DaoTestConfig;
 import com.anna.dao.api.RoomDao;
 import com.anna.model.Room;
+import com.anna.model.RoomDetails;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Assert;
@@ -28,7 +29,7 @@ public class RoomDaoImplTest {
     public void getRoomsTest() {
         LOGGER.debug("service: getRoomsTest");
 
-        List<Room> rooms = roomDao.getRooms();
+        List<RoomDetails> rooms = roomDao.getRooms();
         Assert.assertEquals(rooms.size(), 6);
     }
 
@@ -36,8 +37,8 @@ public class RoomDaoImplTest {
     public void getRoomByIdTest() {
         LOGGER.debug("service: getRoomByIdTest");
 
-        Room room = roomDao.getRoomById(1);
+        RoomDetails room = roomDao.getRoomById(1);
         Assert.assertNotNull(room);
-        Assert.assertEquals(room.getRoomNumber(), 1);
+        Assert.assertEquals(room.getRoomId(), 1);
     }
 }

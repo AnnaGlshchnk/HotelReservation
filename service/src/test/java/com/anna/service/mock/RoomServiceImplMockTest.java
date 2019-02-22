@@ -3,6 +3,7 @@ package com.anna.service.mock;
 import com.anna.config.ServiceTestConfig;
 import com.anna.dao.api.RoomDao;
 import com.anna.model.Room;
+import com.anna.model.RoomDetails;
 import com.anna.service.impl.RoomServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -44,7 +45,7 @@ public class RoomServiceImplMockTest {
     public void getRooms() {
         LOGGER.debug("service: getRoomsTest");
 
-        List<Room> rooms = new ArrayList<>();
+        List<RoomDetails> rooms = new ArrayList<>();
         Mockito.when(mockRoomDao.getRooms()).thenReturn(rooms);
 
         rooms = roomService.getRooms();
@@ -55,9 +56,9 @@ public class RoomServiceImplMockTest {
     public void getRoomById() {
         LOGGER.debug("service: getRoomByIdTest");
 
-        Mockito.when(mockRoomDao.getRoomById(1)).thenReturn(new Room(1L));
+        Mockito.when(mockRoomDao.getRoomById(1)).thenReturn(new RoomDetails(1L));
 
-        Room room = roomService.getRoomById(1);
+        RoomDetails room = roomService.getRoomById(1);
         Assert.assertEquals(1, room.getRoomId());
     }
 

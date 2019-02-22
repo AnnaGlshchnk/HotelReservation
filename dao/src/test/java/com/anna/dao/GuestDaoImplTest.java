@@ -3,6 +3,8 @@ package com.anna.dao;
 import com.anna.config.DaoTestConfig;
 import com.anna.dao.api.GuestDao;
 import com.anna.model.Guest;
+import com.anna.model.GuestDetails;
+import com.anna.model.GuestList;
 import com.anna.model.SaveGuest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,7 +31,7 @@ public class GuestDaoImplTest {
     public void getGuestsTest() {
         LOGGER.debug("service: getGuestsTest");
 
-        List<Guest> guests = guestDao.getGuests();
+        List<GuestList> guests = guestDao.getGuests();
         Assert.assertEquals(guests.size(), 4);
     }
 
@@ -37,7 +39,7 @@ public class GuestDaoImplTest {
     public void getGuestByIdTest() {
         LOGGER.debug("service: getGuestByIdTest");
 
-        Guest guest = guestDao.getGuestById(1);
+        GuestDetails guest = guestDao.getGuestById(1);
         Assert.assertNotNull(guest);
         Assert.assertEquals(guest.getGuestId(), 1);
         Assert.assertEquals(guest.getFirstName(), "Klaus");
@@ -50,7 +52,7 @@ public class GuestDaoImplTest {
 
         SaveGuest guest = new SaveGuest("Alan", "Lods");
         guestDao.addGuest(guest);
-        Guest newGuest = guestDao.getGuestById(5);
+        GuestDetails newGuest = guestDao.getGuestById(5);
         Assert.assertNotNull(newGuest);
     }
 
@@ -61,7 +63,7 @@ public class GuestDaoImplTest {
         SaveGuest guest = new SaveGuest("Hilary", "Willis");
         guest.setFirstName("Hillary");
         guestDao.updateGuest(2, guest);
-        Guest newGuest = guestDao.getGuestById(2);
+        GuestDetails newGuest = guestDao.getGuestById(2);
         Assert.assertEquals(newGuest.getFirstName(), "Hillary");
     }
 }

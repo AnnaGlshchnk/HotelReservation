@@ -48,7 +48,7 @@ public class ReservationDaoImpl implements ReservationDao {
         return namedParameterJdbcTemplate.query(getReservationSql, mapSqlParameterSource, new ReservationMapper());
     }
 
-    public Reservation getReservationById(Integer reservationId) {
+    public ReservationDetails getReservationById(Integer reservationId) {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(RESERVATION_ID, reservationId);
 
         return namedParameterJdbcTemplate.queryForObject(getReservationByIdSql, mapSqlParameterSource, new ReservationDetailsMapper());
@@ -90,21 +90,21 @@ public class ReservationDaoImpl implements ReservationDao {
             return new Reservation(rs.getLong("reservation_id"),
                     rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
-                    new Room(rs.getLong("room_id")),
                     new Guest(rs.getLong("guest_id")));
         }
     }
 
-    private class ReservationDetailsMapper implements RowMapper<Reservation> {
+    private class ReservationDetailsMapper implements RowMapper<ReservationDetails> {
         @Override
-        public Reservation mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Reservation(rs.getLong("reservation_id"),
+        public ReservationDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new ReservationDetails(rs.getLong("reservation_id"),
                     rs.getDate("start_reservation"),
                     rs.getDate("end_reservation"),
+                    new GuestData(rs.getString("first_name"),
+                            rs.getString("surname")),
                     new Room(rs.getInt("room_number")),
-                    new Hotel(rs.getString("hotel_name")),
-                    new Guest(rs.getString("first_name"),
-                            rs.getString("surname")));
+                    new Hotel(rs.getString("hotel_name"))
+            );
         }
     }
 }

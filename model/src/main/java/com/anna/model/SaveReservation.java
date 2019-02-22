@@ -1,18 +1,27 @@
 package com.anna.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class SaveReservation {
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private Date startReservation;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     private Date finishReservation;
+    @NotNull
     private Guest guest;
-    private Room room;
+    @NotNull
+    private SaveRoom room;
 
     public SaveReservation() {
     }
 
-    public SaveReservation(Date startReservation, Date finishReservation, Room room, Guest guest) {
+    public SaveReservation(Date startReservation, Date finishReservation, SaveRoom room, Guest guest) {
         this.startReservation = startReservation;
         this.finishReservation = finishReservation;
         this.room = room;
@@ -43,11 +52,11 @@ public class SaveReservation {
         this.guest = guest;
     }
 
-    public Room getRoom() {
+    public SaveRoom getRoom() {
         return room;
     }
 
-    public void setRoom(Room room) {
+    public void setRoom(SaveRoom room) {
         this.room = room;
     }
 }

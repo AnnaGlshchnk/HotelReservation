@@ -2,10 +2,7 @@ package com.anna.service.mock;
 
 import com.anna.config.ServiceTestConfig;
 import com.anna.dao.api.ReservationDao;
-import com.anna.model.Guest;
-import com.anna.model.Reservation;
-import com.anna.model.Room;
-import com.anna.model.SaveReservation;
+import com.anna.model.*;
 import com.anna.service.impl.ReservationServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -61,9 +58,9 @@ public class ReservationServiceImplMockTest {
     public void getReservationByIdTest() {
         LOGGER.debug("service: getReservationByIdTest");
 
-        Mockito.when(mockReservationDao.getReservationById(1)).thenReturn(new Reservation(1));
+        Mockito.when(mockReservationDao.getReservationById(1)).thenReturn(new ReservationDetails(1));
 
-        Reservation reservation = reservationService.getReservationById(1);
+        ReservationDetails reservation = reservationService.getReservationById(1);
         Assert.assertEquals(1, reservation.getReservationId());
     }
 
@@ -76,7 +73,7 @@ public class ReservationServiceImplMockTest {
         Date start = simpleDateFormat.parse("2019-09-01");
         Date end = simpleDateFormat.parse("2019-09-06");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         Mockito.when(mockReservationDao.addReservation(reservation)).thenReturn(5);
 
         Integer reservationId = reservationService.addReservation(reservation);
@@ -95,7 +92,7 @@ public class ReservationServiceImplMockTest {
         Date end = simpleDateFormat.parse("2019-09-06");
         Date newEnd = simpleDateFormat.parse("2019-09-05");
 
-        SaveReservation reservation = new SaveReservation(start, end, new Room(1L), new Guest(4));
+        SaveReservation reservation = new SaveReservation(start, end, new SaveRoom(1L), new Guest(4));
         reservation.setFinishReservation(newEnd);
         Integer guestId = reservationService.updateReservation(1, reservation);
         Assert.assertEquals(Integer.valueOf(1), guestId);

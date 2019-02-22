@@ -3,6 +3,7 @@ package com.anna.dao.impl;
 import com.anna.dao.api.RoomDao;
 import com.anna.model.Hotel;
 import com.anna.model.Room;
+import com.anna.model.RoomDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,33 +33,25 @@ public class RoomDaoImpl implements RoomDao {
     }
 
 
-    public List<Room> getRooms() {
+    public List<RoomDetails> getRooms() {
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
         return namedParameterJdbcTemplate.query(getRoomsSql, mapSqlParameterSource, new RoomMapper());
     }
 
-    public Room getRoomById(Integer roomId) {
+    public RoomDetails getRoomById(Integer roomId) {
 
         MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource(ROOM_ID, roomId);
-        return namedParameterJdbcTemplate.queryForObject(getRoomByIdSql, mapSqlParameterSource, new RoomWithDetailsMapper());
+        return namedParameterJdbcTemplate.queryForObject(getRoomByIdSql, mapSqlParameterSource, new RoomMapper());
     }
 
-
-    private class RoomMapper implements RowMapper<Room> {
+    private class RoomMapper implements RowMapper<RoomDetails> {
         @Override
-        public Room mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Room(rs.getLong("room_id"),
-                    rs.getInt("room_number"),
-                    new Hotel(rs.getLong("hotel_id")));
-        }
-    }
-
-    private class RoomWithDetailsMapper implements RowMapper<Room> {
-        @Override
-        public Room mapRow(ResultSet rs, int rowNum) throws SQLException {
-            return new Room(rs.getLong("room_id"),
-                    rs.getInt("room_number"),
+        public RoomDetails mapRow(ResultSet rs, int rowNum) throws SQLException {
+            return new RoomDetails(rs.getLong("room_id"),
+                    new Room(rs.getInt("room_number")),
                     new Hotel(rs.getString("hotel_name")));
         }
     }
+
+
 }
